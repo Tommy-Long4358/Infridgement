@@ -362,12 +362,20 @@ a:visited {
     background-color: #36454F;
 }
 
+.page-title > a > img:hover {
+    background-color: rgba(54, 69, 79, 0.85);
+}
+
 .page-title > button {
     color: white;
     font-size: 18px;
     background-color: #115868;
     border: none;
     padding: 12px 45px;
+}
+
+.page-title > button:hover {
+    background-color: rgba(17, 88, 104, 0.8);
 }
 
 
