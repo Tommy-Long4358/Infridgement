@@ -1,0 +1,625 @@
+/* ===== Gerneral === */
+
+/* custom font for title */
+@font-face {
+    font-family: 'QuackQuackGoTitle';
+    src: url('fonts/Cagliostro-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* custom font for all other text */
+@font-face {
+    font-family: 'Cantarell'; 
+    src: url('fonts/Cantarell-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* remove default margin from all elemetns */
+*, body {
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+/* === Login and Registration Page === */
+
+.login-signup-container {
+    display: flex;
+    justify-content: flex-end;
+    height: 100vh;
+    background-image: url('images/background-image.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: contain; /* set to cover, move to top, or remove if too small  */
+}
+
+
+.login-signup-info > .ducky {
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    left: 21vw;
+    height: 300px;
+    filter: drop-shadow(0px 20px 5px rgba(0, 0, 0, 0.33));
+}
+
+.login-signup-info > .bubble {
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    left: 21vw;
+    height: 40vh;
+    filter: drop-shadow(0px 20px 5px rgba(0, 0, 0, 0.33));
+}
+
+
+.login-signup-info {
+    width: 70%;
+    background: #C4CFD7;
+    text-align: center;
+    border-radius: 75px 0px 0px 75px;
+    -webkit-box-shadow: -10px 10px 15px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: -10px 10px 15px 0px rgba(0,0,0,0.4);
+    box-shadow: -10px 10px 15px 0px rgba(0,0,0,0.4);
+    overflow-x: hidden;
+}
+
+.login-signup-info > form.login-signup-form {
+    width: 40%;
+    margin: 10vh auto;
+    margin: 10vh auto 7vh auto;
+}
+
+.login-signup-info > .login-signup-form > h1 {
+    font-family: 'QuackQuackGoTitle';
+    font-size: 50px;
+    color: black;
+    text-underline-offset: 15px;
+}
+
+.login-signup-info > .login-signup-form > h3 {
+    font-family: 'Cantarell';
+    font-size: 40px;
+    margin-top: 35px;
+}
+
+.login-signup-info > .login-signup-form > input {
+    box-sizing: border-box;
+    background-color: #C4CFD7;
+    font-size: 25px;
+    border: 2px solid black;
+    border-radius: 12px;
+    width: 100%;
+    padding: 10px 15px;
+    margin-top: 25px;
+}
+
+.login-signup-info > .login-signup-form > input.password {
+    border-radius: 12px 12px 0 0;
+    border-bottom: 1px solid black;
+}
+
+.login-signup-info > .login-signup-form > input:focus{
+    outline: none;
+}
+
+.login-signup-info > .login-signup-form > a {
+    font-family: 'Cantarell';
+    float: right;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.login-signup-info > .login-signup-form > button{
+    box-sizing: border-box;
+    background-color: #1C7C8A;
+    font-size: 25px;
+    font-weight: bold;
+    border: 0px;
+    border-radius: 12px;
+    width: 100%;
+    padding: 8px;
+    margin-top: 25px;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.25);
+}
+
+.login-signup-info > .login-signup-form > h5 {
+    font-family: 'Cantarell';
+    font-weight: 400;
+    float: left;
+    font-size: 18px;
+    margin-top: 5px;
+    text-align: left;
+}
+
+.login-signup-info > div.login-signup-form {
+    width: 40%;
+    margin: 5vh auto;
+}
+
+.login-signup-info > div.login-signup-form > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Password strength checker */
+.pw-meter .pw-strength {
+    box-sizing: border-box;
+    font-family: 'Cantarell';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:relative;
+    width:100%;
+    height:30px;
+    background:rgba(211, 211, 211, 0.75);
+    border: 2px solid black;
+    border-top: 1px solid black;
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+}
+.pw-meter .pw-strength span:nth-child(1) {
+    position:relative;
+    font-size:15px;
+    color: black;
+    z-index:2;
+    font-weight:bold;
+}
+.pw-meter .pw-strength span:nth-child(2) {
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:0%;
+    height:100%;
+    z-index:1;
+    transition:all 300ms ease-in-out;
+}
+
+/* Message pop up */
+.bubble {
+    /* layout */
+    position: relative;
+
+    /* looks */
+    background-color: #fff;
+    padding: 18px 15px;
+    font-size: 25px;
+    border-radius: 20px;
+    box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.33);
+}
+
+.bubble::before {
+    /* layout */
+    content: '';
+    position: absolute;
+    rotate: 180deg;
+    width: 0;
+    height: 0;
+    top: 100%;
+    left: 45px;  /* offset should move with padding of parent */
+    border: 20px solid transparent;
+    border-top: none;
+
+    /* looks */
+    border-bottom-color: #fff;
+    filter: drop-shadow(0 -3px 1px rgba(0, 0, 0, 0.25));
+}
+
+.bubble-container {
+    font-family: 'Cantarell';
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    max-width: 225px;
+    position: absolute;
+    z-index: 0;
+    bottom: 283px;
+    left: 23vw;
+    opacity: 0;
+    transition: visibility 0s 500ms, opacity 500ms linear;
+}
+
+a:visited {
+    color: #0000EE;
+}
+
+
+/* === Confirmation Page === */
+
+.confirmation-container {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background: url('images/background-image.png') no-repeat center fixed;
+    background-size: cover;
+}
+
+.confirmation-info {
+    width: 50%;
+    background: #C4CFD7;
+    text-align: center;
+    border-radius: 75px;
+    box-shadow: -10px 10px 15px 0px rgba(0,0,0,0.4);
+    -webkit-box-shadow: -10px 10px 15px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: -10px 10px 15px 0px rgba(0,0,0,0.4);
+    overflow-x: hidden;
+}
+
+.confirmation-info > div { 
+    display: inline-block; 
+    position: relative; 
+    width: 400px; 
+    height: 400px; 
+    overflow: hidden; 
+    border-radius: 50%; 
+    border: 5px gray dashed;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 10vh 0 5vh 0;
+} 
+
+.confirmation-info > div > img { 
+    width: auto; 
+    height: 105%; 
+    margin: 50px 0px 0px 25px; 
+}
+
+.confirmation-info > h3 {
+    font-family: 'Cantarell';
+    font-size: 25px;
+}
+
+.confirmation-info > button {
+    box-sizing: border-box;
+    background-color: #1C7C8A;
+    font-size: 25px;
+    font-weight: bold;
+    border: 0px;
+    border-radius: 12px;
+    width: 25%;
+    padding: 10px;
+    margin: 25px 0px;
+}
+
+.confirmation-info > button:hover, .login-signup-info > .login-signup-form > button:hover, .support-body > .contact-form > form > button:hover {
+    background-color: rgba(28, 124, 138, 0.9);
+}
+
+/* === General === */
+/* containers */
+.flex-container {
+    display: flex;
+    align-items: center;
+    font-family: Cantarell;
+}
+
+.flex-container > div {
+    width: 100vw;
+}
+
+/* nav column */
+.nav-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    max-width: 20px;
+    min-width: 200px;
+}
+
+.nav-column > a {
+    display: flex;
+    align-items: center;
+    background-color: #C4CFD7;
+    color: black;
+    text-decoration: none;
+    border: 0px black solid;
+    width: 70%;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 22px;
+    margin: 15px 0px;
+    box-shadow: -2px 2px 5px 0px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.nav-column > .active, .nav-column > a:hover {
+    background-color: #1C7C8A;
+}
+
+.nav-column > a > img {
+    height: 30px;
+    margin-right: 8px;
+}
+
+.nav-column > .logout-button {
+    margin: auto 0 40px 0;
+}
+
+/* page titles */
+.page-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+}
+
+.page-title > a {
+    display: flex;
+}
+
+.page-title > a > img {
+    border-radius: 50%;
+    height: 22px;
+    width: 22px;
+    padding: 10px;
+    background-color: #36454F;
+}
+
+.page-title > a > img:hover {
+    background-color: rgba(54, 69, 79, 0.85);
+}
+
+.page-title > button {
+    color: white;
+    font-size: 18px;
+    background-color: #115868;
+    border: none;
+    padding: 12px 45px;
+}
+
+.page-title > button:hover {
+    background-color: rgba(17, 88, 104, 0.8);
+}
+
+
+
+/* === Profile === */
+/* notifications */
+.notifications {
+    box-sizing: border-box;
+    background-color: #115868;
+    border-radius: 35px 0px 0px 35px;
+    height: 100vh;
+    padding: 25px 30px;
+}
+
+
+/* personal info */
+.personal-info {
+    box-sizing: border-box;
+    background-color: #36454F;
+    height: 100vh;
+    padding: 25px 30px;
+}
+
+
+
+/* === Home === */
+/* item list */
+.home-list {
+    box-sizing: border-box;
+    background-color: #115868;
+    border-radius: 35px 0px 0px 35px;
+    height: 100vh;
+    padding: 25px 30px;
+}
+
+
+/* fridge capacity */
+.home-capacity {
+    box-sizing: border-box;
+    background-color: #36454F;
+    height: 100vh;
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+}
+
+/* sizing */
+/* overall body and door */
+.home-capacity > .body, .home-capacity > .door {
+    box-sizing: border-box;
+    height: 75vh;
+    flex-grow: 1;
+}
+
+/* body and door text */
+.home-capacity > .body > h3, .home-capacity > .door > h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 5%;
+    color: white;
+}
+
+/* fridge */
+.home-capacity > .body > .fridge, .home-capacity > .door > .fridge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 10px;    
+    height: 50%;
+}
+
+/* gap */
+.home-capacity > .body > .gap, .home-capacity > .door > .gap {
+    box-sizing: border-box;
+    width: 100%;
+    height: 3%;
+}
+
+/* freezer */
+.home-capacity > .body > .freezer, .home-capacity > .door > .freezer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 10px;    
+    height: 42%;
+}
+
+.interior {
+    width: 90%;
+    height: 90%;
+    background-color: white;
+}
+
+/* color */
+/* fridge */
+.home-capacity > .body > .fridge, .home-capacity > .body > .freezer {
+    background-color: #115868;
+}
+
+/* door */
+.home-capacity > .door > .fridge, .home-capacity > .door > .freezer {
+    background-color: #1C7C8A;
+}
+
+/* gap */
+.home-capacity > .body > .gap {
+    background-color: #12143C;
+}
+
+
+
+
+/* === Add Item === */
+/* custom item */
+.add-custom-item {
+    box-sizing: border-box;
+    background-color: #115868;
+    border-radius: 35px 0px 0px 35px;
+    height: 100vh;
+    padding: 25px 30px;
+}
+
+
+/* preset item */
+.add-preset-item {
+    box-sizing: border-box;
+    background-color: #36454F;
+    height: 100vh;
+    padding: 25px 30px;
+}
+
+
+
+/* === Ratios === */
+.ratio {
+    box-sizing: border-box;
+    background-color: #36454F;
+    border-radius: 35px 0px 0px 35px;
+    height: 100vh;
+    padding: 25px 30px;
+}
+
+
+
+/* === About === */
+.about-body {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF8E0;
+    border-radius: 35px;
+    height: 97vh;
+    padding: 25px 30px;
+    margin-right: 12px;
+    overflow-x: hidden;
+}
+
+.about-body > .about-title {
+    margin-bottom: 15px;
+}
+
+.about-body > .about-title > h4 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.about-body > .about-title > h4 > img {
+    height: 30px;
+    margin: 0px 10px
+}
+
+.about-body > .about-title > h5 {
+    font-size: 15px;
+}
+
+.about-body > .about-description {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.about-body > .about-description > img {
+    height: 200px;
+    background-color: #373F51;
+    padding: 50px 15px 25px 15px;
+    border-radius: 20px;
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.3);
+}
+
+
+.about-body > .about-description > div > h4 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.about-body > .about-description > div > p {
+    font-size: 18px;
+    max-width: 500px;
+}
+
+.about-body > .about-features > h4 {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 50px 0 15px 0;
+}
+
+.about-body > .about-features > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.about-body > .about-features > div > a {
+    text-decoration: none;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.75);
+    max-width: 275px;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.25);
+    transition: 0.1s;
+}
+
+.about-body > .about-features > div > a:hover {
+    outline: 3px solid #FFB039;
+}
+
+.about-body > .about-features > div > a > img {
+    height: 100px;
+    filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.25));
+}
+
+.about-body > .about-features > div > a > h4 {
+    font-size: 25px;
+}
+
+.about-body > .about-features > div > a > h5 {
+    font-size: 18px;
+}
