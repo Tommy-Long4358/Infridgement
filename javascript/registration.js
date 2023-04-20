@@ -1,4 +1,4 @@
-import  { db, ref, auth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile, set } from "./db.js"
+import { db, ref, auth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile, set } from "./db.js"
 
 // listen for submit event 
 document.getElementById("registrationForm").addEventListener("submit", registrationSubmit);
@@ -78,19 +78,50 @@ async function registrationSubmit(e) {
       const user = userCredential.user;
       await set(ref(db, 'Users/' + user.uid), {
         "AccountInfo": {
-            "fullName": fullName, 
-            "username": userName, 
-            "email": email, 
-            "profilePicture": "images/profile-picture.jpeg"
-          },
-          "CheckList": {
-            "preTrip": "",
-            "postTrip": ""
-          },
-          "Bookmarked": "",
-          "Itineraries": ""
+          "fullName": fullName,
+          "username": userName,
+          "email": email,
+          "profilePicture": "images/profile-picture.jpeg"
+        },
+        "FridgeStorage": {
+          "Shelf 1": "",
+          "Shelf 2": "",
+          "Shelf 3": "",
+          "Produce": "",
+          "Door 1": "",
+          "Door 2": "",
+          "Door 3": ""
+        },
+        "FreezerStorage": {
+          "Shelf 1": "",
+          "Shelf 2": "",
+          "Shelf 3": "",
+          "Door 1": "",
+          "Door 2": "",
+          "Door 3": ""
+        },
+        "FridgeRatio": {
+          "Shelf 1": 0,
+          "Shelf 2": 0,
+          "Shelf 3": 0,
+          "Produce": 0,
+          "Door 1": 0,
+          "Door 2": 0,
+          "Door 3": 0
+        },
+        "FreezerRatio": {
+          "Shelf 1": 0,
+          "Shelf 2": 0,
+          "Shelf 3": 0,
+          "Door 1": 0,
+          "Door 2": 0,
+          "Door 3": 0
+        },
+        "PresetItems": "",
+        "Notifications": "",
+
         // dont save password to DB
-    })
+      })
 
       // reset form and redirect page
       document.getElementById('registrationForm').reset();
