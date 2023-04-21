@@ -25,8 +25,45 @@
         <div class="page-title">
             <h2>Custom Item</h2>
         </div>
+        <form action="">
+            <label for="name">Name</label><br>
+            <input type="text" name="name"><br>
 
-        <!-- *ADD CODE HERE* -->
+            <label for="type">Type</label><br>
+            <input type="text" name="type"><br>
+
+            <label for="size">Dimensions (inches)</label><br>
+            <input type="text" name="size" placeholder="Height">
+            <input type="text" name="size" placeholder="Width">
+            <input type="text" name="size" placeholder="Length"><br>
+
+            <label for="date">Expiration Date</label><br>
+            <input type="date" name="date"><br>
+
+            <label for="comment">Comments (optional)</label><br>
+            <textarea name="comment" id="" cols="30" rows="10"></textarea><br>
+
+            <label for="location">Location</label><br>
+            <select name="location" id="">
+                <option disabled selected value> -- Select Fridge or Freezer -- </option>
+                <option value="">Fridge</option>
+                <option value="">Freezer</option>
+            </select>
+            <br>
+            <select name="location" id="">
+                <option disabled selected value> -- Select a Compartment -- </option>
+                <option value="">Shelf 1</option>
+                <option value="">Shelf 2</option>
+                <option value="">Shelf 3</option>
+                <option value="">Produce</option>
+                <option value="">Door 1</option>
+                <option value="">Door 2</option>
+                <option value="">Door 3</option>
+            </select>
+            <br>
+            
+            <input type="submit" value="Add Item">
+        </form>
     </div>
 
     <!-- preset item column -->
