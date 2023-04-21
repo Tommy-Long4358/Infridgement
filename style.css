@@ -623,6 +623,72 @@ a:visited {
     padding: 25px 30px;
 }
 
+.add-custom-item > form {
+    overflow-x: hidden;
+    height: 92%;
+}
+
+/* format labels */
+.add-custom-item > form > label {
+    display:inline-block;
+    color: white;
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+.add-custom-item > form > label:first-child {
+    margin-top: 0px;
+}
+
+/* format input and select */
+.add-custom-item > form > input, 
+.add-custom-item > form > select,
+.add-custom-item > form > textarea,
+.add-custom-item > form > .dimensions > input {
+    box-sizing: border-box;
+    border: none;
+    width: 100%;
+    font-size: 22px;
+    padding: 5px;
+    margin-top: 5px;
+    resize: none;
+}
+
+/* space location selects */
+.add-custom-item > form > select:last-of-type {
+    margin-top: 10px;
+}
+
+/* format dimensions */
+.add-custom-item > form > .dimensions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-custom-item > form > .dimensions > p {
+    color: white;
+    font-size: 25px;
+    margin: 0 15px;
+}
+
+.add-custom-item > form > .dimensions > input {
+    min-width: 60px;
+    text-align: center;
+}
+
+/* format submit button */
+.add-custom-item > form > input:last-child {
+    background-color: #1C7C8A;
+    color: white;
+    padding: 15px 0;
+    margin: 25px 0 10px 0;
+}
+
+.add-custom-item > form > input:last-child:hover {
+    background-color: rgba(28, 124, 138, 0.85);
+}
+
 
 /* preset item */
 .add-preset-item {
