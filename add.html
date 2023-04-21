@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,19 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/ducky.png">
     <title>Infridgement - Add Item</title>
+
+    <!-- move to js file -->
+    <script>
+        function loadComparments() {
+            var refrigeratorSel = document.getElementById("FridgeOrFreezer").value;
+            if (refrigeratorSel == "Freezer") {
+                var freezerOnly = document.getElementById("produce").hidden = true;
+                var freezerOnly = document.getElementById("door3").hidden = true;
+            }
+        }
+    </script>
 </head>
+
 <body class="flex-container">
     <!-- navigation column -->
     <div class="nav-column">
@@ -30,38 +43,57 @@
             <input type="text" name="name"><br>
 
             <label for="type">Type</label><br>
-            <input type="text" name="type"><br>
+            <select name="type" id="">
+                <!-- add more and adjust as needed -->
+                <option disabled selected value> -- Select Food Type -- </option>
+                <option value="Fruits">Fruits</option>
+                <option value="Vegetables">Vegetables</option>
+                <option value="Dairy">Dairy</option>
+                <option value="Other">Other</option>
+                <option value="">?</option>
+                <option value="">?</option>
+                <option value="">?</option>    
+                <option value="">?</option>
+                <option value="">?</option>
+                <option value="">?</option>   
+            </select>
+            <br>
 
             <label for="size">Dimensions (inches)</label><br>
-            <input type="text" name="size" placeholder="Height">
-            <input type="text" name="size" placeholder="Width">
-            <input type="text" name="size" placeholder="Length"><br>
+            <div class="dimensions">
+                <input type="number" name="size" placeholder="Height">
+                <p>X</p>
+                <input type="number" name="size" placeholder="Width">
+                <p>X</p>
+                <input type="number" name="size" placeholder="Length">
+            </div>
 
             <label for="date">Expiration Date</label><br>
             <input type="date" name="date"><br>
 
             <label for="comment">Comments (optional)</label><br>
-            <textarea name="comment" id="" cols="30" rows="10"></textarea><br>
+            <textarea name="comment" id="" cols="30" rows="5"></textarea><br>
 
+            <!-- https://www.w3schools.com/howto/howto_js_cascading_dropdown.asp -->
             <label for="location">Location</label><br>
-            <select name="location" id="">
+            <!-- select location -->
+            <select name="location" id="FridgeOrFreezer" onchange="loadComparments()">
                 <option disabled selected value> -- Select Fridge or Freezer -- </option>
-                <option value="">Fridge</option>
-                <option value="">Freezer</option>
+                <option value="Fridge">Fridge</option>
+                <option value="Freezer">Freezer</option>
             </select>
-            <br>
+            <!-- select compartment (must set produce and door 3 to "hidden" if "Freezer" is selected) -->
             <select name="location" id="">
                 <option disabled selected value> -- Select a Compartment -- </option>
-                <option value="">Shelf 1</option>
-                <option value="">Shelf 2</option>
-                <option value="">Shelf 3</option>
-                <option value="">Produce</option>
-                <option value="">Door 1</option>
-                <option value="">Door 2</option>
-                <option value="">Door 3</option>
+                <option value="Shelf 1">Shelf 1</option>
+                <option value="Shelf 2">Shelf 2</option>
+                <option value="Shelf 3">Shelf 3</option>
+                <option id="produce" value="Produce">Produce</option>
+                <option value="Door 1">Door 1</option>
+                <option value="Door 2">Door 2</option>
+                <option id="door3" value="Door 3">Door 3</option>
             </select>
-            <br>
-            
+
             <input type="submit" value="Add Item">
         </form>
     </div>
@@ -74,6 +106,8 @@
         </div>
 
         <!-- *ADD CODE HERE* -->
+        
     </div>
 </body>
+
 </html>
