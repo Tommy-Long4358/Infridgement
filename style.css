@@ -706,7 +706,12 @@ a:visited {
     background-color: #36454F;
     border-radius: 35px 0px 0px 35px;
     height: 100vh;
-    padding: 25px 30px;
+    padding: 25px 30px 15px 25px;
+    overflow-x: hidden;
+}
+
+.ratio > .page-title {
+    margin: 0px;
 }
 
 /* fridge capacity */
@@ -724,7 +729,7 @@ a:visited {
 .ratio-capacity>.body-label,
 .ratio-capacity>.door-label {
     box-sizing: border-box;
-    height: 88vh;
+    height: 87vh;
     flex-grow: 1;
 }
 
@@ -839,7 +844,7 @@ a:visited {
     font-size: 20px;
 }
 
-/* labels */
+/* section labels */
 .ratio-capacity .body-label .interior,
 .ratio-capacity .door-label .interior,
 .ratio-capacity .body-label .fridge .interior .section,
@@ -851,11 +856,21 @@ a:visited {
 }
 
 .ratio-capacity .body-label .section {
-    justify-content: end;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
 }
 
 .ratio-capacity .door-label .section {
-    justify-content: start;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+/* dimension label */
+.ratio-capacity .dim-label {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
 }
 
 /* capacity input */
@@ -864,7 +879,7 @@ a:visited {
     background-color: transparent;
     text-align: center;
     font-size: 20px;
-    width: 50px;
+    width: 70px;
     padding: 5px;
 }
 
@@ -884,6 +899,13 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+/*  */
+.ratio-title-dimensions {
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    margin-top: 5px;
+    font-size: 15px;
+}
 
 
 

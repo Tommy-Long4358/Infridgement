@@ -98,7 +98,6 @@ async function registrationSubmit(e) {
           "Shelf 3": "",
           "Door 1": "",
           "Door 2": "",
-          "Door 3": ""
         },
         "FridgeRatio": {
           "Shelf 1": 0,
@@ -115,7 +114,6 @@ async function registrationSubmit(e) {
           "Shelf 3": 0,
           "Door 1": 0,
           "Door 2": 0,
-          "Door 3": 0
         },
         "PresetItems": "",
         "Notifications": "",
