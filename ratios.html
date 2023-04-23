@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/ducky.png">
+    <script type="module" src="javascript/ratios.js"></script>
     <title>Infridgement - Ratios</title>
 </head>
 <body class="flex-container">
@@ -24,9 +25,7 @@
         <!-- page title -->
         <div class="page-title">
             <h2>Ratios</h2>
-            <button>Save</button>
         </div>
-
         <div class="ratio-capacity">
             <!-- refrigerator body labels-->
             <div class="body-label">
@@ -34,15 +33,19 @@
                     <div class="interior">
                         <div class="section">
                             <p>Shelf 1</p>
+                            <p class="dim-label">32 X 28 X 7 in</p>
                         </div>
                         <div class="section">
                             <p>Shelf 2</p>
+                            <p class="dim-label">32 X 28 X 13 in</p>
                         </div>
                         <div class="section">
                             <p>Shelf 3</p>
+                            <p class="dim-label">32 X 28 X 13 in</p>
                         </div>
                         <div class="section">
                             <p>Produce</p>
+                            <p class="dim-label">32 X 32 X 13 in</p>
                         </div>
                     </div>
                 </div>
@@ -51,12 +54,15 @@
                     <div class="interior">
                         <div class="section">
                             <p>Shelf 1</p>
+                            <p class="dim-label">32 X 28 X 8 in</p>
                         </div>
                         <div class="section">
                             <p>Shelf 2</p>
+                            <p class="dim-label">32 X 28 X 8 in</p>
                         </div>
                         <div class="section">
                             <p>Shelf 3</p>
+                            <p class="dim-label">32 X 28 X 8 in</p>
                         </div>
                     </div>
                 </div>
@@ -66,16 +72,16 @@
                 <div class="fridge">
                     <div class="interior">
                         <div class="section">
-                            <input class="capacity-input" placeholder="##%" type="number" required>
+                            <input class="capacity-input" id="fridge-shelf-1" placeholder="##%" onchange="updateInput('fridge-shelf-1')" type="text" required>
                         </div>
                         <div class="section">
-                            <input class="capacity-input" placeholder="##%" type="number" required>
+                            <input class="capacity-input" id="fridge-shelf-2" placeholder="##%" onchange="updateInput('fridge-shelf-2')" type="text" required>
                         </div>
                         <div class="section">
-                            <input class="capacity-input" placeholder="##%" type="number" required>
+                            <input class="capacity-input" id="fridge-shelf-3" placeholder="##%" onchange="updateInput('fridge-shelf-3')" type="text" required>
                         </div>
                         <div class="section">
-                            <input class="capacity-input" placeholder="##%" type="number" required>
+                            <input class="capacity-input" id="fridge-produce" placeholder="##%" onchange="updateInput('fridge-produce')" type="text" required>
                         </div>
                     </div>
                 </div>
@@ -83,13 +89,13 @@
                 <div class="freezer">
                     <div class="interior">
                         <div class="section">
-                            <input class="capacity-input" placeholder="##%" type="number" required>
+                            <input class="capacity-input" id="freezer-shelf-1" placeholder="##%" onchange="updateInput('freezer-shelf-1')" type="text" required>
                         </div>
                         <div class="section">
-                            <input class="capacity-input" placeholder="##%" type="number" required>
+                            <input class="capacity-input" id="freezer-shelf-2" placeholder="##%" onchange="updateInput('freezer-shelf-2')" type="text" required>
                         </div>
                         <div class="section">
-                            <input class="capacity-input" placeholder="##%" type="number" required>
+                            <input class="capacity-input" id="freezer-shelf-3" placeholder="##%" onchange="updateInput('freezer-shelf-3')" type="text" required>
                         </div>
                     </div>
                 </div>
@@ -99,13 +105,13 @@
                 <div class="fridge">
                     <div class="interior">
                         <div class="section">
-                            <input class="capacity-input" placeholder="##%" type="number" required>
+                            <input class="capacity-input" id="fridge-door-1" placeholder="##%" onchange="updateInput('fridge-door-1')" type="text" required>
                         </div>
                         <div class="section">
-                            <input class="capacity-input" placeholder="##%" type="number" required>
+                            <input class="capacity-input" id="fridge-door-2" placeholder="##%" onchange="updateInput('fridge-door-2')" type="text" required>
                         </div>
                         <div class="section">
-                            <input class="capacity-input" placeholder="##%" type="number" required>
+                            <input class="capacity-input" id="fridge-door-3" placeholder="##%" onchange="updateInput('fridge-door-3')" type="text" required>
                         </div>
                         <div class="section">
                             <p></p>
@@ -116,10 +122,10 @@
                 <div class="freezer">
                     <div class="interior">
                         <div class="section">
-                            <input class="capacity-input" placeholder="##%" type="number" required>
+                            <input class="capacity-input" id="freezer-door-1" placeholder="##%" onchange="updateInput('freezer-door-1')" type="text" required>
                         </div>
                         <div class="section">
-                            <input class="capacity-input" placeholder="##%" type="number" required>
+                            <input class="capacity-input" id="freezer-door-2" placeholder="##%" onchange="updateInput('freezer-door-2')" type="text" required>
                         </div>
                     </div>
                 </div>
@@ -130,12 +136,15 @@
                     <div class="interior">
                         <div class="section">
                             <p>Door 1</p>
+                            <p class="dim-label">32 X 4 X 7 in</p>
                         </div>
                         <div class="section">
                             <p>Door 2</p>
+                            <p class="dim-label">32 X 4 X 13 in</p>
                         </div>
                         <div class="section">
                             <p>Door 3</p>
+                            <p class="dim-label">32 X 4 X 13 in</p>
                         </div>
                         <div class="section">
                             <p></p>
@@ -147,14 +156,17 @@
                     <div class="interior">
                         <div class="section">
                             <p>Door 1</p>
+                            <p class="dim-label">32 X 4 X 12 in</p>
                         </div>
                         <div class="section">
                             <p>Door 2</p>
+                            <p class="dim-label">32 X 4 X 12 in</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="ratio-title-dimensions">Dimensions: Length X Width X Hieght</div>
     </div>
 
 </body>
