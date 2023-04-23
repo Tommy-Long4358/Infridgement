@@ -21,6 +21,7 @@ document.getElementById("add-button").addEventListener("submit", addItem);
 document.getElementById("FridgeOrFreezer").onchange = 
     function loadCompartments() {
         var refrigeratorSel = document.getElementById("FridgeOrFreezer").value;
+        var compartSel = document.getElementById("friFree-compartment").value;
         if (refrigeratorSel == "Freezer") {
             document.getElementById("produce").hidden = true;
             document.getElementById("door3").hidden = true;
@@ -28,6 +29,20 @@ document.getElementById("FridgeOrFreezer").onchange =
         else if (refrigeratorSel == "Fridge") {
             document.getElementById("produce").hidden = false;
             document.getElementById("door3").hidden = false;
+        }
+
+        // Error if user picks 
+        if ((compartSel == "Produce") && (refrigeratorSel == "Freezer")) {
+            alert("Freezer does not have a compartment: Produce, please select another option.");
+            document.getElementById("FridgeOrFreezer").value = null;
+            document.getElementById("friFree-compartment").value = null;
+
+
+        }
+        else if ((compartSel == "Door 3") && (refrigeratorSel == "Freezer")) {
+            alert("Freezer does not have a compartment: Door 3, please select another option");
+            document.getElementById("FridgeOrFreezer").value = null;
+            document.getElementById("friFree-compartment").value = null;
         }
     }
 
