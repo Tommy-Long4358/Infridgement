@@ -10,16 +10,6 @@
     <link rel="icon" href="images/ducky.png">
     <title>Infridgement - Add Item</title>
 
-    <!-- move to js file -->
-    <script>
-        function loadComparments() {
-            var refrigeratorSel = document.getElementById("FridgeOrFreezer").value;
-            if (refrigeratorSel == "Freezer") {
-                var freezerOnly = document.getElementById("produce").hidden = true;
-                var freezerOnly = document.getElementById("door3").hidden = true;
-            }
-        }
-    </script>
     <script type="module" src="javascript/add.js"></script>
 </head>
 
@@ -46,15 +36,15 @@
 
             <label for="type">Type</label><br>
             <select name="type" id="item-type">
-                <!-- add more and adjust as needed -->
+                <!-- Common Food Types -->
                 <option disabled selected value> -- Select Food Type -- </option>
                 <option value="Fruits">Fruits</option>
                 <option value="Vegetables">Vegetables</option>
                 <option value="Dairy">Dairy</option>
-                <option value="Produce">?</option>
-                <option value="Protein">?</option>
-                <option value="Snacks">?</option>
-                <option value="Other">Other</option> 
+                <option value="Produce">Produce</option>
+                <option value="Protein">Protein</option>
+                <option value="Snacks">Snacks</option>
+                <option value="Other">Other</option>
             </select>
             <br>
 
@@ -76,7 +66,7 @@
             <!-- https://www.w3schools.com/howto/howto_js_cascading_dropdown.asp -->
             <label for="location">Location</label><br>
             <!-- select location -->
-            <select name="location" id="FridgeOrFreezer" onchange="loadComparments()">
+            <select name="location" id="FridgeOrFreezer" onchange="loadCompartments()">
                 <option disabled selected value> -- Select Fridge or Freezer -- </option>
                 <option value="Fridge">Fridge</option>
                 <option value="Freezer">Freezer</option>

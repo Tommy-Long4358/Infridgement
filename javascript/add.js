@@ -16,6 +16,21 @@ const userID = localStorage.getItem("userID");
 
 document.getElementById("add-button").addEventListener("submit", addItem);
 
+// function for the location selector
+// fridge should have produce and a third door shelf as an option vs the freezer not having those
+document.getElementById("FridgeOrFreezer").onchange = 
+    function loadCompartments() {
+        var refrigeratorSel = document.getElementById("FridgeOrFreezer").value;
+        if (refrigeratorSel == "Freezer") {
+            document.getElementById("produce").hidden = true;
+            document.getElementById("door3").hidden = true;
+        }
+        else if (refrigeratorSel == "Fridge") {
+            document.getElementById("produce").hidden = false;
+            document.getElementById("door3").hidden = false;
+        }
+    }
+
 function checkAdd(h, w, l, friFree, ratio)
 {
     const accountRef = ref(db, `Users/${accountID}/${friFree}Ratio`);
