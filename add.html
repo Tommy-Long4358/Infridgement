@@ -20,6 +20,7 @@
             }
         }
     </script>
+    <script type="module" src="javascript/add.js"></script>
 </head>
 
 <body class="flex-container">
@@ -41,10 +42,10 @@
         </div>
         <form action="">
             <label for="name">Name</label><br>
-            <input type="text" name="name"><br>
+            <input id="item-name" type="text" name="name"><br>
 
             <label for="type">Type</label><br>
-            <select name="type" id="">
+            <select name="type" id="item-type">
                 <!-- add more and adjust as needed -->
                 <option disabled selected value> -- Select Food Type -- </option>
                 <option value="Fruits">Fruits</option>
@@ -62,18 +63,18 @@
 
             <label for="size">Dimensions (inches)</label><br>
             <div class="dimensions">
-                <input type="number" name="size" placeholder="Height">
+                <input id="item-l" type="number" name="size" placeholder="Length">
                 <p>X</p>
-                <input type="number" name="size" placeholder="Width">
+                <input id="item-w" type="number" name="size" placeholder="Width">
                 <p>X</p>
-                <input type="number" name="size" placeholder="Length">
+                <input id="item-h" type="number" name="size" placeholder="Height">
             </div>
 
             <label for="date">Expiration Date</label><br>
-            <input type="date" name="date"><br>
+            <input id="item-expDate" type="date" name="date"><br>
 
             <label for="comment">Comments (optional)</label><br>
-            <textarea name="comment" id="" cols="30" rows="5"></textarea><br>
+            <textarea name="comment" id="item-comments" cols="30" rows="5"></textarea><br>
 
             <!-- https://www.w3schools.com/howto/howto_js_cascading_dropdown.asp -->
             <label for="location">Location</label><br>
@@ -84,7 +85,7 @@
                 <option value="Freezer">Freezer</option>
             </select>
             <!-- select compartment (must set produce and door 3 to "hidden" if "Freezer" is selected) -->
-            <select name="location" id="">
+            <select name="location" id="friFree-compartment">
                 <option disabled selected value> -- Select a Compartment -- </option>
                 <option value="Shelf 1">Shelf 1</option>
                 <option value="Shelf 2">Shelf 2</option>
@@ -95,7 +96,7 @@
                 <option id="door3" value="Door 3">Door 3</option>
             </select>
 
-            <input type="submit" value="Add Item">
+            <input id="add-button" type="submit" value="Add Item">
         </form>
     </div>
 
