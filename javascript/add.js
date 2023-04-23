@@ -67,9 +67,11 @@ function checkAdd(h, w, l, friFree, ratio)
             }
         }
 
-        if ((h < dims[2]) && (w < dims[1]) && (l < dims[0])){
-            var compartVol = dims[0] * dims[1] * dims[2] * r;
-            var itemVol = h * w * l;
+
+        // if item does fit in the fridge
+        if ((l <  dims[0]) && (w < dims[1]) && (h < dims[2])) {
+            var compartVol = dims[0] * dims[1] * dims[2] * r; // volume of compartment
+            var itemVol = l * w * h; // volume of item
             if (itemVol < compartVol){
                 return true;
 
