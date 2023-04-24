@@ -37,7 +37,7 @@ onAuthStateChanged(auth, (user) => {
 
 // === get capcaity === 
 // 1. get dim of fridge/section and calc sec vol 
-// 2. get ratio 
+// 2. get ratio from db
 // 3. volume of section X ratio = TotalSecSpace
 // 4. get all user items volumes from database
 // 5. TotalSecSpace - sum item volumes in section = FreeSpace 
