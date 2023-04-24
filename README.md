@@ -7,9 +7,9 @@ tasks:
 - item list (home left side) --> Tommy
 - fridge capacity (home right side) --> Matt
 - custom item (add left side) --> Chris
-- preset item (add - right side) --> son
+- preset item (add - right side) --> Son
 - ratios --> Matt
-- notifications (profile left) --> Zack 
+- notifications (profile left) --> Zach
 - personal info (profile right) --> Mariel 
 - about page --> Mariel 
-- set section sizes in db --> Matt (should be easy) 
+- set section sizes in db --> Matt
