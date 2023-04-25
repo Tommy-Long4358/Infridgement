@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="icon" href="images/ducky.png">
     <title>Infridgement - Add Item</title>
 </head>
+
 <body class="flex-container">
     <!-- navigation column -->
     <div class="nav-column">
@@ -25,19 +27,22 @@
         <div class="page-title">
             <h2>Notifications</h2>
         </div>
+        <div class="notifications-container">
+            <div class="button-row">
+                <!-- Add icons to buttons and lines of text still.-->
+                <button id="read">Mark as Read </button>
+                <button id="trash">Trash All</button>
+                <script src="javascript/notis.js"></script>
+            </div>
+            <div>
+                <ul id="notificationList">
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                </ul>
+            </div>
+        </div>
 
-        <div>
-            <!-- Add icons to buttons and lines of text still.-->
-            <button id="read">Mark as Read </button>
-            <button id="trash">Trash All</button>
-            <script src="javascript/notis.js"></script>
-        </div>
-        <div>
-            <ul id="notificationList">
-                <li>Item 1</li>
-                <li>Item 2</li>
-            </ul>
-        </div>
+
         <!-- *ADD CODE HERE* -->
     </div>
 
@@ -51,4 +56,5 @@
         <!-- *ADD CODE HERE* -->
     </div>
 </body>
+
 </html>

@@ -397,12 +397,55 @@ a:visited {
 /* === Profile === */
 /* notifications */
 .notifications {
+    /* justify-content: center; */
     box-sizing: border-box;
     background-color: #115868;
     border-radius: 35px 0px 0px 35px;
     height: 100vh;
     padding: 25px 30px;
 }
+
+/* Notification list container  */
+.notifications > .notifications-container {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    background-color: white;
+    width: 94%;
+    height: 90%;
+    border-radius: 15px;
+    padding: 5px 10px;
+    overflow-x: hidden;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+}
+
+.button-row > button {
+    box-sizing: border-box;
+    background-color: #1C7C8A;
+    color: white;
+    font-size: 20px;
+    font-weight: normal;
+    border: 0px;
+    border-radius: 12px;
+    height: 7%;
+    /* padding: 10px; */
+    margin: 0px 50px;
+}
+
+.button-row > button:hover{
+    background-color: rgba(28, 124, 138, 0.9);
+}
+
+
+.notifications > .notifications-container > ul {
+    font-size: 20px;    
+}
+
+/*Notification list */ 
 
 
 /* personal info */
