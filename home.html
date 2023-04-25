@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/ducky.png">
+    <script type="module" src="javascript/home.js"></script>
     <title>Infridgement - Home</title>
 </head>
 
@@ -125,16 +126,16 @@
             <div class="fridge">
                 <div class="interior">
                     <div class="section">
-                        <p>##%</p>
+                        <p id="fridge-shelf-1">##%</p>
                     </div>
                     <div class="section">
-                        <p>##%</p>
+                        <p id="fridge-shelf-2">##%</p>
                     </div>
                     <div class="section">
-                        <p>##%</p>
+                        <p id="fridge-shelf-3">##%</p>
                     </div>
                     <div class="section">
-                        <p>##%</p>
+                        <p id="produce">##%</p>
                     </div>
                 </div>
             </div>
@@ -142,16 +143,17 @@
             <div class="freezer">
                 <div class="interior">
                     <div class="section">
-                        <p>##%</p>
+                        <p id="freezer-shelf-1">##%</p>
                     </div>
                     <div class="section">
-                        <p>##%</p>
+                        <p id="freezer-shelf-2">##%</p>
                     </div>
                     <div class="section">
-                        <p>##%</p>
+                        <p id="freezer-shelf-3">##%</p>
                     </div>
                 </div>
             </div>
+            <p class="user-capacity">*Display user's available space</p>
         </div>
         <!-- refrigerator door -->
         <div class="door">
@@ -159,15 +161,16 @@
             <div class="fridge">
                 <div class="interior">
                     <div class="section">
-                        <p>##%</p>
+                        <p id="fridge-door-1">##%</p>
                     </div>
                     <div class="section">
-                        <p>##%</p>
+                        <p id="fridge-door-2">##%</p>
                     </div>
                     <div class="section">
-                        <p>##%</p>
+                        <p id="fridge-door-3">##%</p>
                     </div>
                     <div class="section">
+                        <!-- place holder for empty -->
                         <p></p>
                     </div>
                 </div>
@@ -176,10 +179,10 @@
             <div class="freezer">
                 <div class="interior">
                     <div class="section">
-                        <p>##%</p>
+                        <p id="freezer-door-1">##%</p>
                     </div>
                     <div class="section">
-                        <p>##%</p>
+                        <p id="freezer-door-2">##%</p>
                     </div>
                 </div>
             </div>
@@ -195,7 +198,6 @@
             </div>
         </div>
     </div>
-
 </body>
 
 </html>
