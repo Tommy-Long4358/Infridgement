@@ -39,7 +39,7 @@ async function passwordReset(e) {
 
                 // clear form and redirect
                 document.getElementById('passResetForm').reset();
-                window.location.href = "login.html";
+                window.location.href = "index.html";
             })
             .catch((error) => {
                 const errorCode = error.code;
