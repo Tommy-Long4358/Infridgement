@@ -1,5 +1,7 @@
+<!-- Add.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,14 +9,27 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/ducky.png">
     <title>Infridgement - Add Item</title>
+
+    <!-- move to js file -->
+    <script>
+        function loadComparments() {
+            var refrigeratorSel = document.getElementById("FridgeOrFreezer").value;
+            if (refrigeratorSel == "Freezer") {
+                var freezerOnly = document.getElementById("produce").hidden = true;
+                var freezerOnly = document.getElementById("door3").hidden = true;
+            }
+        }
+    </script>
+    <script type="module" src="javascript/add.js"></script>
 </head>
+
 <body class="flex-container">
     <!-- navigation column -->
     <div class="nav-column">
-        <a href="profile.html"><img src="images/nav/home-icon.png" alt="">John Doe</a>
+        <a href="profile.html"><img src="images/nav/user.png" alt="">John Doe</a>
         <a href="home.html"><img src="images/nav/home-icon.png" alt="">Home</a>
-        <a href="add.html" class="active"><img src="images/nav/home-icon.png" alt="">Add Item</a>
-        <a href="ratios.html"><img src="images/nav/home-icon.png" alt="">Ratios</a>
+        <a href="add.html" class="active"><img src="images/nav/add-icon.png" alt="">Add Item</a>
+        <a href="ratios.html"><img src="images/nav/ratio-icon.png" alt="">Ratios</a>
         <a href="about.html"><img src="images/nav/about-icon.png" alt="">About</a>
         <a href="login.html" class="logout-button"><img src="images/nav/log-out-icon.png" alt="">Log Out</a>
     </div>
@@ -25,8 +40,64 @@
         <div class="page-title">
             <h2>Custom Item</h2>
         </div>
+        <form action="">
+            <label for="name">Name</label><br>
+            <input id="item-name" type="text" name="name"><br>
 
-        <!-- *ADD CODE HERE* -->
+            <label for="type">Type</label><br>
+            <select name="type" id="item-type">
+                <!-- add more and adjust as needed -->
+                <option disabled selected value> -- Select Food Type -- </option>
+                <option value="Fruits">Fruits</option>
+                <option value="Vegetables">Vegetables</option>
+                <option value="Dairy">Dairy</option>
+                <option value="Other">Other</option>
+                <option value="">?</option>
+                <option value="">?</option>
+                <option value="">?</option>    
+                <option value="">?</option>
+                <option value="">?</option>
+                <option value="">?</option>   
+            </select>
+            <br>
+
+            <label for="size">Dimensions (inches)</label><br>
+            <div class="dimensions">
+                <input id="item-l" type="number" name="size" placeholder="Length">
+                <p>X</p>
+                <input id="item-w" type="number" name="size" placeholder="Width">
+                <p>X</p>
+                <input id="item-h" type="number" name="size" placeholder="Height">
+            </div>
+
+            <label for="date">Expiration Date</label><br>
+            <input id="item-expDate" type="date" name="date"><br>
+
+            <label for="comment">Comments (optional)</label><br>
+            <textarea name="comment" id="item-comments" cols="30" rows="5"></textarea><br>
+
+            <!-- https://www.w3schools.com/howto/howto_js_cascading_dropdown.asp -->
+            <label for="location">Location</label><br>
+            <!-- select location -->
+            <select name="location" id="FridgeOrFreezer" onchange="loadComparments()">
+                <option disabled selected value> -- Select Fridge or Freezer -- </option>
+                <option value="Fridge">Fridge</option>
+                <option value="Freezer">Freezer</option>
+            </select>
+            <!-- select compartment (must set produce and door 3 to "hidden" if "Freezer" is selected) -->
+            <select name="location" id="friFree-compartment">
+                <option disabled selected value> -- Select a Compartment -- </option>
+                <option value="Shelf 1">Shelf 1</option>
+                <option value="Shelf 2">Shelf 2</option>
+                <option value="Shelf 3">Shelf 3</option>
+                <option id="produce" value="Produce">Produce</option>
+                <option value="Door 1">Door 1</option>
+                <option value="Door 2">Door 2</option>
+                <option id="door3" value="Door 3">Door 3</option>
+            </select>
+
+            <input id="add-button" type="submit" value="Add Item">
+        </form>
     </div>
 
     <!-- preset item column -->
@@ -37,6 +108,8 @@
         </div>
 
         <!-- *ADD CODE HERE* -->
+        
     </div>
 </body>
+
 </html>

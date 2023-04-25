@@ -10,18 +10,24 @@
 
 /* custom font for all other text */
 @font-face {
-    font-family: 'Cantarell'; 
+    font-family: 'Cantarell';
     src: url('fonts/Cantarell-Regular.ttf');
     font-weight: 400;
     font-style: normal;
 }
 
 /* remove default margin from all elemetns */
-*, body {
+*,
+body {
     margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: normal;
 }
 
@@ -34,11 +40,12 @@ h1, h2, h3, h4, h5, h6 {
     background-image: url('images/background-image.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: contain; /* set to cover, move to top, or remove if too small  */
+    background-size: contain;
+    /* set to cover, move to top, or remove if too small  */
 }
 
 
-.login-signup-info > .ducky {
+.login-signup-info>.ducky {
     position: absolute;
     z-index: 0;
     bottom: 0;
@@ -47,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
     filter: drop-shadow(0px 20px 5px rgba(0, 0, 0, 0.33));
 }
 
-.login-signup-info > .bubble {
+.login-signup-info>.bubble {
     position: absolute;
     z-index: 0;
     bottom: 0;
@@ -62,32 +69,32 @@ h1, h2, h3, h4, h5, h6 {
     background: #C4CFD7;
     text-align: center;
     border-radius: 75px 0px 0px 75px;
-    -webkit-box-shadow: -10px 10px 15px 0px rgba(0,0,0,0.4);
-    -moz-box-shadow: -10px 10px 15px 0px rgba(0,0,0,0.4);
-    box-shadow: -10px 10px 15px 0px rgba(0,0,0,0.4);
+    -webkit-box-shadow: -10px 10px 15px 0px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: -10px 10px 15px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: -10px 10px 15px 0px rgba(0, 0, 0, 0.4);
     overflow-x: hidden;
 }
 
-.login-signup-info > form.login-signup-form {
+.login-signup-info>form.login-signup-form {
     width: 40%;
     margin: 10vh auto;
     margin: 10vh auto 7vh auto;
 }
 
-.login-signup-info > .login-signup-form > h1 {
+.login-signup-info>.login-signup-form>h1 {
     font-family: 'QuackQuackGoTitle';
     font-size: 50px;
     color: black;
     text-underline-offset: 15px;
 }
 
-.login-signup-info > .login-signup-form > h3 {
+.login-signup-info>.login-signup-form>h3 {
     font-family: 'Cantarell';
     font-size: 40px;
     margin-top: 35px;
 }
 
-.login-signup-info > .login-signup-form > input {
+.login-signup-info>.login-signup-form>input {
     box-sizing: border-box;
     background-color: #C4CFD7;
     font-size: 25px;
@@ -98,23 +105,23 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 25px;
 }
 
-.login-signup-info > .login-signup-form > input.password {
+.login-signup-info>.login-signup-form>input.password {
     border-radius: 12px 12px 0 0;
     border-bottom: 1px solid black;
 }
 
-.login-signup-info > .login-signup-form > input:focus{
+.login-signup-info>.login-signup-form>input:focus {
     outline: none;
 }
 
-.login-signup-info > .login-signup-form > a {
+.login-signup-info>.login-signup-form>a {
     font-family: 'Cantarell';
     float: right;
     font-size: 18px;
     margin-top: 5px;
 }
 
-.login-signup-info > .login-signup-form > button{
+.login-signup-info>.login-signup-form>button {
     box-sizing: border-box;
     background-color: #1C7C8A;
     font-size: 25px;
@@ -124,10 +131,10 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     padding: 8px;
     margin-top: 25px;
-    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.25);
 }
 
-.login-signup-info > .login-signup-form > h5 {
+.login-signup-info>.login-signup-form>h5 {
     font-family: 'Cantarell';
     font-weight: 400;
     float: left;
@@ -136,12 +143,12 @@ h1, h2, h3, h4, h5, h6 {
     text-align: left;
 }
 
-.login-signup-info > div.login-signup-form {
+.login-signup-info>div.login-signup-form {
     width: 40%;
     margin: 5vh auto;
 }
 
-.login-signup-info > div.login-signup-form > div {
+.login-signup-info>div.login-signup-form>div {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -155,30 +162,32 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     justify-content: center;
-    position:relative;
-    width:100%;
-    height:30px;
-    background:rgba(211, 211, 211, 0.75);
+    position: relative;
+    width: 100%;
+    height: 30px;
+    background: rgba(211, 211, 211, 0.75);
     border: 2px solid black;
     border-top: 1px solid black;
     border-radius: 0 0 12px 12px;
     overflow: hidden;
 }
+
 .pw-meter .pw-strength span:nth-child(1) {
-    position:relative;
-    font-size:15px;
+    position: relative;
+    font-size: 15px;
     color: black;
-    z-index:2;
-    font-weight:bold;
+    z-index: 2;
+    font-weight: bold;
 }
+
 .pw-meter .pw-strength span:nth-child(2) {
-    position:absolute;
-    top:0px;
-    left:0px;
-    width:0%;
-    height:100%;
-    z-index:1;
-    transition:all 300ms ease-in-out;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0%;
+    height: 100%;
+    z-index: 1;
+    transition: all 300ms ease-in-out;
 }
 
 /* Message pop up */
@@ -191,7 +200,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 18px 15px;
     font-size: 25px;
     border-radius: 20px;
-    box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.33);
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.33);
 }
 
 .bubble::before {
@@ -202,7 +211,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 0;
     height: 0;
     top: 100%;
-    left: 45px;  /* offset should move with padding of parent */
+    left: 45px;
+    /* offset should move with padding of parent */
     border: 20px solid transparent;
     border-top: none;
 
@@ -213,9 +223,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .bubble-container {
     font-family: 'Cantarell';
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: 225px;
     position: absolute;
     z-index: 0;
@@ -245,36 +255,36 @@ a:visited {
     background: #C4CFD7;
     text-align: center;
     border-radius: 75px;
-    box-shadow: -10px 10px 15px 0px rgba(0,0,0,0.4);
-    -webkit-box-shadow: -10px 10px 15px 0px rgba(0,0,0,0.4);
-    -moz-box-shadow: -10px 10px 15px 0px rgba(0,0,0,0.4);
+    box-shadow: -10px 10px 15px 0px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: -10px 10px 15px 0px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: -10px 10px 15px 0px rgba(0, 0, 0, 0.4);
     overflow-x: hidden;
 }
 
-.confirmation-info > div { 
-    display: inline-block; 
-    position: relative; 
-    width: 400px; 
-    height: 400px; 
-    overflow: hidden; 
-    border-radius: 50%; 
+.confirmation-info>div {
+    display: inline-block;
+    position: relative;
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 50%;
     border: 5px gray dashed;
     background-color: rgba(255, 255, 255, 0.5);
     margin: 10vh 0 5vh 0;
-} 
-
-.confirmation-info > div > img { 
-    width: auto; 
-    height: 105%; 
-    margin: 50px 0px 0px 25px; 
 }
 
-.confirmation-info > h3 {
+.confirmation-info>div>img {
+    width: auto;
+    height: 105%;
+    margin: 50px 0px 0px 25px;
+}
+
+.confirmation-info>h3 {
     font-family: 'Cantarell';
     font-size: 25px;
 }
 
-.confirmation-info > button {
+.confirmation-info>button {
     box-sizing: border-box;
     background-color: #1C7C8A;
     font-size: 25px;
@@ -286,7 +296,9 @@ a:visited {
     margin: 25px 0px;
 }
 
-.confirmation-info > button:hover, .login-signup-info > .login-signup-form > button:hover, .support-body > .contact-form > form > button:hover {
+.confirmation-info>button:hover,
+.login-signup-info>.login-signup-form>button:hover,
+.support-body>.contact-form>form>button:hover {
     background-color: rgba(28, 124, 138, 0.9);
 }
 
@@ -298,7 +310,7 @@ a:visited {
     font-family: Cantarell;
 }
 
-.flex-container > div {
+.flex-container>div {
     width: 100vw;
 }
 
@@ -312,7 +324,7 @@ a:visited {
     min-width: 200px;
 }
 
-.nav-column > a {
+.nav-column>a {
     display: flex;
     align-items: center;
     background-color: #C4CFD7;
@@ -324,20 +336,21 @@ a:visited {
     padding: 10px;
     font-size: 22px;
     margin: 15px 0px;
-    box-shadow: -2px 2px 5px 0px rgba(0,0,0,0.3);
+    box-shadow: -2px 2px 5px 0px rgba(0, 0, 0, 0.3);
     transition: 0.3s;
 }
 
-.nav-column > .active, .nav-column > a:hover {
+.nav-column>.active,
+.nav-column>a:hover {
     background-color: #1C7C8A;
 }
 
-.nav-column > a > img {
+.nav-column>a>img {
     height: 30px;
     margin-right: 8px;
 }
 
-.nav-column > .logout-button {
+.nav-column>.logout-button {
     margin: auto 0 40px 0;
 }
 
@@ -348,13 +361,14 @@ a:visited {
     align-items: center;
     color: white;
     font-size: 22px;
+    margin-bottom: 15px;
 }
 
-.page-title > a {
+.page-title>a {
     display: flex;
 }
 
-.page-title > a > img {
+.page-title>a>img {
     border-radius: 50%;
     height: 22px;
     width: 22px;
@@ -362,11 +376,11 @@ a:visited {
     background-color: #36454F;
 }
 
-.page-title > a > img:hover {
+.page-title>a>img:hover {
     background-color: rgba(54, 69, 79, 0.85);
 }
 
-.page-title > button {
+.page-title>button {
     color: white;
     font-size: 18px;
     background-color: #115868;
@@ -374,7 +388,7 @@ a:visited {
     padding: 12px 45px;
 }
 
-.page-title > button:hover {
+.page-title>button:hover {
     background-color: rgba(17, 88, 104, 0.8);
 }
 
@@ -411,27 +425,67 @@ a:visited {
     padding: 25px 30px;
 }
 
+/* refrigerator lists container */
+.home-list > .refrigerator-lists {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 90%;
+}
+
+/* fridge and freezer list */
+.home-list > .refrigerator-lists > .fridge-list,
+.home-list > .refrigerator-lists > .freezer-list {
+    box-sizing: border-box;
+    width: 47%;
+    height: 100%;
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px 10px;
+    overflow-x: hidden;
+}
+
+/* list font sizes */
+.home-list > .refrigerator-lists > .fridge-list > h3,
+.home-list > .refrigerator-lists > .freezer-list > h3 {
+    font-size: 25px;
+    text-decoration: underline;
+}
+
+.home-list > .refrigerator-lists > .fridge-list > h4,
+.home-list > .refrigerator-lists > .freezer-list > h4 {
+    font-size: 20px;
+}
+
+.home-list > .refrigerator-lists > .fridge-list > ul,
+.home-list > .refrigerator-lists > .freezer-list > ul {
+    font-size: 20px;
+}
+
+
 
 /* fridge capacity */
 .home-capacity {
     box-sizing: border-box;
     background-color: #36454F;
     height: 100vh;
-    padding: 25px 30px;
+    padding: 0 30px;
     display: flex;
     align-items: center;
 }
 
-/* sizing */
-/* overall body and door */
-.home-capacity > .body, .home-capacity > .door {
+/* overall body and door size*/
+.home-capacity>.body,
+.home-capacity>.door {
     box-sizing: border-box;
-    height: 75vh;
+    height: 90vh;
     flex-grow: 1;
 }
 
-/* body and door text */
-.home-capacity > .body > h3, .home-capacity > .door > h3 {
+/* body and door text/size */
+.home-capacity>.body>h3,
+.home-capacity>.door>h3,
+.home-capacity>.fridge-freezer-label>h3 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -441,58 +495,122 @@ a:visited {
     color: white;
 }
 
-/* fridge */
-.home-capacity > .body > .fridge, .home-capacity > .door > .fridge {
+/* fridge size */
+.home-capacity>.body>.fridge,
+.home-capacity>.door>.fridge,
+.home-capacity>.fridge-freezer-label>.fridge {
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     width: 100%;
-    border-radius: 10px;    
-    height: 50%;
+    border-radius: 10px;
+    height: 60.5%;
 }
 
-/* gap */
-.home-capacity > .body > .gap, .home-capacity > .door > .gap {
+/* gap size */
+.home-capacity>.body>.gap,
+.home-capacity>.door>.gap,
+.home-capacity>.fridge-freezer-label>.gap {
     box-sizing: border-box;
     width: 100%;
-    height: 3%;
+    height: 1.5%;
 }
 
-/* freezer */
-.home-capacity > .body > .freezer, .home-capacity > .door > .freezer {
+/* freezer size */
+.home-capacity>.body>.freezer,
+.home-capacity>.door>.freezer,
+.home-capacity>.fridge-freezer-label>.freezer {
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     width: 100%;
-    border-radius: 10px;    
-    height: 42%;
+    border-radius: 10px;
+    height: 33%;
 }
 
-.interior {
-    width: 90%;
-    height: 90%;
-    background-color: white;
-}
-
-/* color */
-/* fridge */
-.home-capacity > .body > .fridge, .home-capacity > .body > .freezer {
+/* fridge color */
+.home-capacity>.body>.fridge,
+.home-capacity>.body>.freezer {
     background-color: #115868;
 }
 
-/* door */
-.home-capacity > .door > .fridge, .home-capacity > .door > .freezer {
+/* door color */
+.home-capacity>.door>.fridge,
+.home-capacity>.door>.freezer {
     background-color: #1C7C8A;
 }
 
-/* gap */
-.home-capacity > .body > .gap {
+/* gap color */
+.home-capacity>.body>.gap {
     background-color: #12143C;
+    width: 90%;
+    margin: auto;
 }
 
+/* interior */
+.home-capacity .interior {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 90%;
+    background-color: white;
+    padding: 10px;
+}
 
+/* fridge shelf */
+.home-capacity .fridge .interior .section {
+    width: 100%;
+    height: 27%;
+    background-color: #C4CFD7;
+}
+
+.home-capacity .fridge .interior .section:first-child {
+    width: 100%;
+    height: 12%;
+    background-color: #C4CFD7;
+}
+
+.home-capacity .door .fridge .interior .section:last-child {
+    background-color: transparent;
+    border: none;
+}
+
+/* freezer shelf */
+.home-capacity .body .freezer .interior .section {
+    width: 100%;
+    height: 30%;
+    background-color: #BFDBF0;
+}
+
+.home-capacity .door .freezer .interior .section {
+    width: 100%;
+    height: 47%;
+    background-color: #BFDBF0;
+}
+
+/* section font */
+.home-capacity .section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+/* fridge and freezer label */
+.home-capacity>.fridge-freezer-label {
+    height: 90vh;
+    width: 45px;
+    color: white;
+}
+
+.home-capacity>.fridge-freezer-label div h3 {
+    transform: rotate(90deg);
+}
 
 
 /* === Add Item === */
@@ -503,6 +621,72 @@ a:visited {
     border-radius: 35px 0px 0px 35px;
     height: 100vh;
     padding: 25px 30px;
+}
+
+.add-custom-item > form {
+    overflow-x: hidden;
+    height: 92%;
+}
+
+/* format labels */
+.add-custom-item > form > label {
+    display:inline-block;
+    color: white;
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+.add-custom-item > form > label:first-child {
+    margin-top: 0px;
+}
+
+/* format input and select */
+.add-custom-item > form > input, 
+.add-custom-item > form > select,
+.add-custom-item > form > textarea,
+.add-custom-item > form > .dimensions > input {
+    box-sizing: border-box;
+    border: none;
+    width: 100%;
+    font-size: 22px;
+    padding: 5px;
+    margin-top: 5px;
+    resize: none;
+}
+
+/* space location selects */
+.add-custom-item > form > select:last-of-type {
+    margin-top: 10px;
+}
+
+/* format dimensions */
+.add-custom-item > form > .dimensions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-custom-item > form > .dimensions > p {
+    color: white;
+    font-size: 25px;
+    margin: 0 15px;
+}
+
+.add-custom-item > form > .dimensions > input {
+    min-width: 60px;
+    text-align: center;
+}
+
+/* format submit button */
+.add-custom-item > form > input:last-child {
+    background-color: #1C7C8A;
+    color: white;
+    padding: 15px 0;
+    margin: 25px 0 10px 0;
+}
+
+.add-custom-item > form > input:last-child:hover {
+    background-color: rgba(28, 124, 138, 0.85);
 }
 
 
@@ -522,7 +706,205 @@ a:visited {
     background-color: #36454F;
     border-radius: 35px 0px 0px 35px;
     height: 100vh;
-    padding: 25px 30px;
+    padding: 25px 30px 15px 25px;
+    overflow-x: hidden;
+}
+
+.ratio > .page-title {
+    margin: 0px;
+}
+
+/* fridge capacity */
+.ratio-capacity {
+    box-sizing: border-box;
+    background-color: #36454F;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* overall refrigerator body/door with size/label */
+.ratio-capacity>.body,
+.ratio-capacity>.door,
+.ratio-capacity>.body-label,
+.ratio-capacity>.door-label {
+    box-sizing: border-box;
+    height: 87vh;
+    flex-grow: 1;
+}
+
+/* fridge size */
+.ratio-capacity>.body>.fridge,
+.ratio-capacity>.door>.fridge,
+.ratio-capacity>.body-label>.fridge,
+.ratio-capacity>.door-label>.fridge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 10px;
+    height: 63%;
+}
+
+/* gap size */
+.ratio-capacity>.body>.gap,
+.ratio-capacity>.door>.gap,
+.ratio-capacity>.body-label>.gap,
+.ratio-capacity>.door-label>.gap {
+    box-sizing: border-box;
+    width: 100%;
+    height: 1.5%;
+}
+
+/* freezer size */
+.ratio-capacity>.body>.freezer,
+.ratio-capacity>.door>.freezer,
+.ratio-capacity>.body-label>.freezer,
+.ratio-capacity>.door-label>.freezer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 10px;
+    height: 35.5%;
+}
+
+/* fridge color */
+.ratio-capacity>.body>.fridge,
+.ratio-capacity>.body>.freezer {
+    background-color: #115868;
+}
+
+/* door color */
+.ratio-capacity>.door>.fridge,
+.ratio-capacity>.door>.freezer {
+    background-color: #1C7C8A;
+}
+
+/* gap color */
+.ratio-capacity>.body>.gap {
+    background-color: #12143C;
+    width: 90%;
+    margin: auto;
+}
+
+/* interior */
+.ratio-capacity .interior {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 90%;
+    background-color: white;
+    padding: 10px;
+}
+
+/* fridge shelf */
+.ratio-capacity .fridge .interior .section {
+    width: 100%;
+    height: 27%;
+    background-color: #C4CFD7;
+}
+
+.ratio-capacity .fridge .interior .section:first-child {
+    width: 100%;
+    height: 12%;
+    background-color: #C4CFD7;
+}
+
+.ratio-capacity .door .fridge .interior .section:last-child {
+    background-color: transparent;
+    border: none;
+}
+
+/* freezer shelf */
+.ratio-capacity .body .freezer .interior .section,
+.ratio-capacity .body-label .freezer .interior .section {
+    width: 100%;
+    height: 30%;
+    background-color: #BFDBF0;
+}
+
+.ratio-capacity .door .freezer .interior .section,
+.ratio-capacity .door-label .freezer .interior .section {
+    width: 100%;
+    height: 47%;
+    background-color: #BFDBF0;
+}
+
+/* section font */
+.ratio-capacity .section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+/* section labels */
+.ratio-capacity .body-label .interior,
+.ratio-capacity .door-label .interior,
+.ratio-capacity .body-label .fridge .interior .section,
+.ratio-capacity .door-label .fridge .interior .section,
+.ratio-capacity .body-label .freezer .interior .section,
+.ratio-capacity .door-label .freezer .interior .section {
+    background-color: transparent;
+    color: white;
+}
+
+.ratio-capacity .body-label .section {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.ratio-capacity .door-label .section {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+/* dimension label */
+.ratio-capacity .dim-label {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* capacity input */
+.ratio-capacity .section > .capacity-input {
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    font-size: 20px;
+    width: 70px;
+    padding: 5px;
+}
+
+.ratio-capacity .section > .capacity-input:hover {
+    background-color: white;
+}
+
+.ratio-capacity .section > .capacity-input:focus {
+    outline: none;
+    background-color: white;
+}
+
+/* hide input spin button */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*  */
+.ratio-title-dimensions {
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    margin-top: 5px;
+    font-size: 15px;
 }
 
 
@@ -540,86 +922,86 @@ a:visited {
     overflow-x: hidden;
 }
 
-.about-body > .about-title {
+.about-body>.about-title {
     margin-bottom: 15px;
 }
 
-.about-body > .about-title > h4 {
+.about-body>.about-title>h4 {
     font-size: 30px;
     font-weight: bold;
 }
 
-.about-body > .about-title > h4 > img {
+.about-body>.about-title>h4>img {
     height: 30px;
     margin: 0px 10px
 }
 
-.about-body > .about-title > h5 {
+.about-body>.about-title>h5 {
     font-size: 15px;
 }
 
-.about-body > .about-description {
+.about-body>.about-description {
     display: flex;
     flex-wrap: wrap;
     gap: 25px;
 }
 
-.about-body > .about-description > img {
+.about-body>.about-description>img {
     height: 200px;
     background-color: #373F51;
     padding: 50px 15px 25px 15px;
     border-radius: 20px;
-    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
 
-.about-body > .about-description > div > h4 {
+.about-body>.about-description>div>h4 {
     font-size: 25px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.about-body > .about-description > div > p {
+.about-body>.about-description>div>p {
     font-size: 18px;
     max-width: 500px;
 }
 
-.about-body > .about-features > h4 {
+.about-body>.about-features>h4 {
     font-size: 25px;
     font-weight: bold;
     margin: 50px 0 15px 0;
 }
 
-.about-body > .about-features > div {
+.about-body>.about-features>div {
     display: flex;
     flex-wrap: wrap;
     gap: 25px;
 }
 
-.about-body > .about-features > div > a {
+.about-body>.about-features>div>a {
     text-decoration: none;
     color: black;
     background-color: rgba(255, 255, 255, 0.75);
     max-width: 275px;
     padding: 15px;
     border-radius: 15px;
-    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
     transition: 0.1s;
 }
 
-.about-body > .about-features > div > a:hover {
+.about-body>.about-features>div>a:hover {
     outline: 3px solid #FFB039;
 }
 
-.about-body > .about-features > div > a > img {
+.about-body>.about-features>div>a>img {
     height: 100px;
     filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.25));
 }
 
-.about-body > .about-features > div > a > h4 {
+.about-body>.about-features>div>a>h4 {
     font-size: 25px;
 }
 
-.about-body > .about-features > div > a > h5 {
+.about-body>.about-features>div>a>h5 {
     font-size: 18px;
 }
