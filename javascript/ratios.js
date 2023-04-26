@@ -25,7 +25,7 @@ function displayData() {
             // get id
             const userID = user.uid;
             uid = userID;
-
+            displayAccount(userID);
             // get data and display fridge ratio
             const frdigeRatios = ref(database, `Users/${userID}/FridgeRatio`);
             onValue(frdigeRatios, (snapshot) => {
@@ -250,4 +250,26 @@ function checkSharedSpace(fridgeOrFreezerDB, previousVals) {
     }).catch((error) => {
         console.error(error);
     });
+}
+
+// display user info in the corner
+function displayAccount(accountID)
+{
+  // Reference of a user's account information from the database
+  const accountRef = ref(database, `Users/${accountID}/AccountInfo`);
+
+  onValue(accountRef, (snapshot) => {
+    // Retrieve user's account information as object
+    const data = snapshot.val();    
+
+    // Image element of profile picture
+    var image = document.getElementById("profile-info-picture");
+
+    // Assign picture's src to picture from user's account information
+    image.src = data.profilePicture;
+    var fullname = data.fullName;
+
+    // Display user's full name next to profile picture
+    document.getElementById("full-name").textContent = fullname;
+  })
 }

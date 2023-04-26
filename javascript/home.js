@@ -25,7 +25,7 @@ onAuthStateChanged(auth, (user) => {
 
         // show user capacity for secs
         displayCapacity(user);
-
+        displayAccount(user.uid);
     }
     else {
         // User is signed out
@@ -148,3 +148,24 @@ function calcVolume(edge1, edge2, edge3) {
 }
 
 
+// display user info in the corner
+function displayAccount(accountID)
+{
+  // Reference of a user's account information from the database
+  const accountRef = ref(database, `Users/${accountID}/AccountInfo`);
+
+  onValue(accountRef, (snapshot) => {
+    // Retrieve user's account information as object
+    const data = snapshot.val();    
+
+    // Image element of profile picture
+    var image = document.getElementById("profile-info-picture");
+
+    // Assign picture's src to picture from user's account information
+    image.src = data.profilePicture;
+    var fullname = data.fullName;
+
+    // Display user's full name next to profile picture
+    document.getElementById("full-name").textContent = fullname;
+  })
+}
