@@ -2,19 +2,37 @@
 import { firebaseConfig } from "./firebaseKey.js";
 // Firebase Functions
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { getDatabase, ref, set, onValue, get, child } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js";
+import { getDatabase, ref, set, onValue, get, child, push } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
-import "./dims.js";
+import {friSh1, friSh2, friSh3, produce, 
+        friD1, friD2, friD3, 
+        freeSh1, freeSh2, freeSh3, 
+        freeD1, freeD2} from "./dims.js";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth();
 
-const userID = localStorage.getItem("userID");
+// const userID = localStorage.getItem("userID");
 
-document.getElementById("add-button").addEventListener("submit", addItem);
+var userID;
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      userID = uid;
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+
+document.getElementById("add-form").addEventListener("submit", addItem);
 
 // function for the location selector
 // fridge should have produce and a third door shelf as an option vs the freezer not having those
@@ -22,6 +40,8 @@ document.getElementById("FridgeOrFreezer").onchange =
     function loadCompartments() {
         var refrigeratorSel = document.getElementById("FridgeOrFreezer").value;
         var compartSel = document.getElementById("friFree-compartment").value;
+
+        // might not need this since the rest of the code will throw an error for it
         if (refrigeratorSel == "Freezer") {
             document.getElementById("produce").hidden = true;
             document.getElementById("door3").hidden = true;
@@ -31,7 +51,7 @@ document.getElementById("FridgeOrFreezer").onchange =
             document.getElementById("door3").hidden = false;
         }
 
-        // Error if user picks 
+        // Error if user picks produce or door 3 when selecting freezer
         if ((compartSel == "Produce") && (refrigeratorSel == "Freezer")) {
             alert("Freezer does not have a compartment: Produce, please select another option.");
             document.getElementById("FridgeOrFreezer").value = null;
@@ -46,17 +66,31 @@ document.getElementById("FridgeOrFreezer").onchange =
         }
     }
 
-function checkAdd(h, w, l, friFree, ratio)
+function checkAdd(l, w, h, friFree, compartment)
 {
-    const accountRef = ref(db, `Users/${accountID}/${friFree}Ratio`);
-    
-    onValue(accountRef, (snapshot) => {
+    // const accountRef = ref(database, `Users/${userID}/${friFree}Ratio`);
+    //const accountRef = ref(database, `Users/${userID}`);
+    // console.log(userID);
+    // ensure that the values are inputted as numbers
+    l = Number(l);
+    w = Number(w);
+    h = Number(h);
+
+    const dbRef = ref(database);
+
+    // user data ain comparison to ratio
+    get(child(dbRef, `Users/${userID}`)).then((snapshot) => {
+    // onValue(accountRef, (snapshot) => {
         const data = snapshot.val();
-        var r = data[ratio];
+        // localStorage.doesFit = false; // value for checking fitness
+        var storage = friFree + 'Storage'; // fridge/freezer storage
+        var storage2 = friFree + 'Ratio'; // ratio
+        var r = data[storage2][compartment]; // user's ratio
         r = r * .01;
+        // console.log(r);
 
         var dims;
-        if (ratio == "Fridge"){
+        if (friFree == "Fridge"){
             if (compartment == "Shelf 1"){
                 dims = friSh1;
             }
@@ -97,20 +131,62 @@ function checkAdd(h, w, l, friFree, ratio)
             }
         }
 
+        // sort items from greatest to least and compare edges
+        const dimItem = [l, w, h]; // dimensions of the item
+        const temp = dimItem.sort(function(a, b){return b - a}); // order from greatest to least
+        const tempd = dims.sort(function(a, b){return b - a}); // temp for compartment dimensions
 
-        // if item does fit in the fridge
-        if ((l <  dims[0]) && (w < dims[1]) && (h < dims[2])) {
-            var compartVol = dims[0] * dims[1] * dims[2] * r; // volume of compartment
-            var itemVol = l * w * h; // volume of item
-            if (itemVol < compartVol){
-                return true;
+        console.log(temp);
+        console.log(tempd);
 
+        // if item fits into the compartment
+        if ((temp[0] <= tempd[0]) && (temp[1] <= tempd[1]) && (temp[2] <= tempd[2])) { // check edges
+            var compartVol = dims[0] * dims[1] * dims[2] * r; // volume of compartment w/ users ratio
+            var itemVol = temp[0] * temp[1] * temp[2]; // volume of item
+            var usedSecVol = 0; // user's section volume that's used
+
+            // check if user's new item fits along with the other items in their ratio
+            // const tempv = []; // object values
+            for (var keys in data[storage][compartment]) {
+                usedSecVol += Object.values(data[storage][compartment][keys]["dim"]).reduce((a, b) => a * b);
+            }
+
+            const tempvol = itemVol + usedSecVol; // total volume of section taken by users + new item volume
+            
+            // if the item fits along with the user's current items, add the item
+            if (tempvol <= compartVol) {
+                // localStorage.setItem('doesFit', true);
+                console.log('item added successfully');
+                const name = document.getElementById("item-name").value;
+                const type = document.getElementById("item-type").value;
+                const expDate = document.getElementById("item-expDate").value;
+                const comments = document.getElementById("item-comments").value;
+                if(comments == null){
+                    comments = "";
+                }
+
+                const accountRef = ref(database, `Users/${userID}/${friFree}Storage/${compartment}`);
+                
+                push(accountRef, {
+                    "name": name,
+                    "type": type,
+                    "expDate": expDate,
+                    "dim": { "length": l, "width": w, "height": h},
+                    "comments": comments
+                })
+            }
+            else{ // item fits in compartment but does not fit within user's ratio
+                console.log('item will not fit with this compartment. please choose a new section or remove item from home');
+                // localStorage.setItem('doesFit', false);
             }
         }
-        console.log("item not added")
-        return false;
-        
+        else { // if the edges are too big
+            // localStorage.setItem('doesFit', false);
+            console.log('edges too big');
+        }
     })
+
+    return null;
 }
 
 function addItem(e)
@@ -122,26 +198,6 @@ function addItem(e)
     const width = document.getElementById("item-w").value;
     const friFree = document.getElementById("FridgeOrFreezer").value;
     const compartment =  document.getElementById("friFree-compartment").value;
-    if (checkAdd(height, width, length, friFree, compartment)){
-        const name = document.getElementById("item-name").value;
-        const type = document.getElementById("item-type").value;
-        const expDate = document.getElementById("item-expDate").value;
-        const comments = document.getElementById("item-comments").value;
-        if(comments == null){
-            comments = "";
-        }
 
-        const accountRef = ref(db, `Users/${accountID}/${friFree}Storage/${compartment}`);
-        
-        push(accountRef, {
-            "name": name,
-            "type": type,
-            "expDate": expDate,
-            "dim": { "length": length, "width": width, "height": height},
-            "comments": comments
-        })
-    }
-    else{
-        alert("Error: Cannot add item - item cannot fit in compartment")
-    }
+    const doesFit = checkAdd(length, width, height, friFree, compartment);
 }
