@@ -9,8 +9,17 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/ducky.png">
     <title>Infridgement - Add Item</title>
-
+    <script>
+        function fill(name,height,width,length,type){
+            document.getElementById('item-name').value = name; 
+            document.getElementById('item-h').value = height; 
+            document.getElementById('item-w').value = width; 
+            document.getElementById('item-l').value = length; 
+            document.getElementById('item-type').value = type;
+        }
+    </script>
     <script type="module" src="javascript/add.js"></script>
+    <script type="module" src="javascript/preset-item.js"></script>
 </head>
 
 <body class="flex-container">
@@ -49,15 +58,15 @@
 
             <label for="size">Dimensions (inches)</label><br>
             <div class="dimensions">
-                <input id="item-l" type="number" name="size" placeholder="Length">
+                <input id="item-l" type="number" step="0.01" name="size" placeholder="Length" required>
                 <p>X</p>
-                <input id="item-w" type="number" name="size" placeholder="Width">
+                <input id="item-w" type="number" step="0.01" name="size" placeholder="Width" required>
                 <p>X</p>
-                <input id="item-h" type="number" name="size" placeholder="Height">
+                <input id="item-h" type="number" step="0.01" name="size" placeholder="Height" required>
             </div>
 
             <label for="date">Expiration Date</label><br>
-            <input id="item-expDate" type="date" name="date"><br>
+            <input id="item-expDate" type="date" name="date" required><br>
 
             <label for="comment">Comments (optional)</label><br>
             <textarea name="comment" id="item-comments" cols="30" rows="5"></textarea><br>
@@ -65,13 +74,13 @@
             <!-- https://www.w3schools.com/howto/howto_js_cascading_dropdown.asp -->
             <label for="location">Location</label><br>
             <!-- select location -->
-            <select name="location" id="FridgeOrFreezer" onchange="loadCompartments()">
+            <select name="location" id="FridgeOrFreezer" onchange="loadCompartments()" required>
                 <option disabled selected value> -- Select Fridge or Freezer -- </option>
                 <option value="Fridge">Fridge</option>
                 <option value="Freezer">Freezer</option>
             </select>
 
-            <select name="location" id="friFree-compartment">
+            <select name="location" id="friFree-compartment" required>
                 <option disabled selected value> -- Select a Compartment -- </option>
                 <option id="shelf1" value="Shelf 1">Shelf 1</option>
                 <option id="shelf2" value="Shelf 2">Shelf 2</option>
@@ -92,9 +101,98 @@
         <div class="page-title">
             <h2>Preset Items</h2>
         </div>
+        <div class="item-container" id="item-container">
+            <div class="item">
+                Milk
+                <br>7.5" X 5.5" X 5.5" 
+                <br>Dairy
+                <input type="submit" value="+" class="button" onclick="fill('Milk',7.5,5.5,5.5,'Dairy')">
+            </div>
+            <div class="item">
+                Butter
+                <br>2" X 2" X 4" 
+                <br>Dairy
+                <input type="submit" value="+" class="button" onclick="fill('Butter',2,2,4,'Dairy')">
+            </div>
+            <div class="item">
+                Cheese
+                <br>4" X 3" X 8" 
+                <br>Dairy
+                <input type="submit" value="+" class="button" onclick="fill('Cheese',4,3,8,'Dairy')">
+            </div>
+            <div class="item">
+                Eggs
+                <br>3" X 4" X 12" 
+                <br>Dairy
+                <input type="submit" value="+" class="button" onclick="fill('Eggs',3,4,12,'Dairy')">
+            </div>
+            <div class="item">
+                Sauce Bottle
+                <br>7" X 3" X 4" 
+                <br>Other
+                <input type="submit" value="+" class="button" onclick="fill('Sauce Bottle',7,3,4,'Other')">
+            </div>
+            <div class="item">
+                Canned Beverage
+                <br>5" X 3" X 3" 
+                <br>Other
+                <input type="submit" value="+" class="button" onclick="fill('Canned Beverage',5,3,3,'Other')">
+            </div>
+            <div class="item">
+                Juice Carton
+                <br>9" X 3" X 3" 
+                <br>Other
+                <input type="submit" value="+" class="button" onclick="fill('Juice Carton',9,3,3,'Other')">
+            </div>
+            <div class="item">
+                Small Container
+                <br>2" X 4" X 4" 
+                <br>Other
+                <input type="submit" value="+" class="button" onclick="fill('Small Container',2,4,4,'Other')">
+            </div>
+            <div class="item">
+                Medium Container
+                <br>3" X 5" X 5" 
+                <br>Other
+                <input type="submit" value="+" class="button" onclick="fill('Medium Container',3,5,5,'Other')">
+            </div>
+            <div class="item">
+                Large Container
+                <br>3" X 7" X 9" 
+                <br>Other
+                <input type="submit" value="+" class="button" onclick="fill('Large Container',3,7,9,'Other')">
+            </div>
+            
+
+        </div>
+        <div class="add-new-preset">
+            <div class="options">
+
+                <input type="text" name="name" placeholder="Name of Item" id="presetName">
+                <div class="dimensions">
+                    <input type="number" name="size" placeholder="Height (in.)" id ="presetHeight">
+                    <p>X</p>
+                    <input type="number" name="size" placeholder="Width (in.)" id ="presetWidth">
+                    <p>X</p>
+                    <input type="number" name="size" placeholder="Length (in.)" id ="presetLength">
+
+                </div>
+                <select name="type" id="presetType">
+                    <!-- add more and adjust as needed -->
+                    <option disabled selected value> -- Select Food Type -- </option>
+                    <option value="Fruits">Fruits</option>
+                    <option value="Vegetables">Vegetables</option>
+                    <option value="Dairy">Dairy</option>
+                    <option value="Protein">Protein</option>
+                    <option value="Snacks">Snacks</option>
+                    <option value="Other">Other</option>     
+                </select>
+            </div>
+            <input class="submitbutton" type="submit" value="+">
+        </div>
+        
 
         <!-- *ADD CODE HERE* -->
-        
     </div>
 </body>
 
