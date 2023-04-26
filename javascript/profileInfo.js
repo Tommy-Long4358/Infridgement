@@ -106,8 +106,7 @@ async function profileUpdate(e)
   const user = auth.currentUser;
 
   const accountRef = ref(database, `Users/${userID}/AccountInfo`);
-  
-    if ( (pass == null) || (npass == null))
+    if ( (pass != "") && (npass != ""))
     {
         onValue(accountRef, (snapshot) => {
         // Retrieve user's account information as object
@@ -121,7 +120,6 @@ async function profileUpdate(e)
         console.log("Password updated!");
         }).catch((error) => {
         console.log(error);
-        alert(error);
         // ...
         });
         });
@@ -136,5 +134,4 @@ async function profileUpdate(e)
   });
   document.getElementById("password").value = "";
   document.getElementById("new-password").value = "";
-  // alert("Profile Saved!");
 }

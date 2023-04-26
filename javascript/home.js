@@ -22,10 +22,10 @@ const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
     if (user) {
         // User is signed in
-
+        displayAccount(user.uid);
         // show user capacity for secs
         displayCapacity(user);
-        displayAccount(user.uid);
+        
     }
     else {
         // User is signed out
