@@ -13,4 +13,4 @@ export const freeSh1 = [32, 28, 8];
 export const freeSh2 = [32, 28, 8];
 export const freeSh3 = [32, 28, 8];
 export const freeD1 = [32, 4, 12];
-export const freeD2 = [32, 4, 12];
+export const freeD2 = [32, 4, 12]; 
