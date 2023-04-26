@@ -1,6 +1,3 @@
-
-
-
 // Get trash and read button's elements.
 document.getElementById("trash").addEventListener("click", deleteAll);
 // document.getElementById("read").addEventListener("click", markRead);

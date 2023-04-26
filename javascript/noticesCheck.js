@@ -1,18 +1,33 @@
 // // Firebase Key
-// import { firebaseConfig } from "./firebaseKey.js";
+import { firebaseConfig } from "./firebaseKey.js";
 // // Firebase Functions
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-// import { getDatabase, ref, set, onValue, get, child } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js";
-// import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
-// import { friTotal, freeTotal } from "./dims.js"
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+import { getDatabase, ref, set, onValue, get, child } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+import { friTotal, freeTotal } from "./dims.js"
 
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const database = getDatabase(app);
-// const auth = getAuth();
+// // // Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const auth = getAuth();
+onAuthStateChanged(auth, (user)=>{
+    if (user) {
+        // User logged in
+        console.log(user.uid);
+    }
+    else {
+        // User is signed out
+        window.location.href = "index.html";
+    }
+
+
+})
 // // console.log("testing");
-// const accountRef = ref(db, `Users/` + userID);
-
+const accountRef = ref(db, `Users/` + userID);
+var ul = document.getElementById("notificationList");
+var li = document.createElement("li");
+li.textContent = "The freezer is currently more than 75% full!";
+ul.appendChild(li);
 
 //Testing with json data.
 // var fs = require('fs');
@@ -46,7 +61,7 @@ function totalUsedSpace() {
 
     // Get notification list element
     var ul = document.getElementById("notificationList");
-    
+
     if (fridgeFull >= 75 && fridgeFull < 90) {
         var li = document.createElement("li");
         li.textContent = "The fridge is currently more than 75% full!";
