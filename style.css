@@ -462,6 +462,12 @@ a:visited {
     font-size: 20px;
 }
 
+.home-list > .refrigerator-lists > .fridge-list > li > button,
+.home-list > .refrigerator-lists > .freezer-list > li  > button {
+    background: transparent;
+    float: right;
+}
+
 
 
 /* fridge capacity */
