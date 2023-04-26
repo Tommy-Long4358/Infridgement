@@ -25,11 +25,13 @@ onAuthStateChanged(auth, (user) => {
     // get all presets
     get(presetRef).then((snapshot) => {
       const presets = snapshot.val();
+      console.log(presets);
       for (var preset in presets){
         const itemRef = ref(db, `Users/${userID}/PresetItems/${preset}`);
         //display each preset
         get(itemRef).then((snapshot) => {
           const item = snapshot.val();
+          console.log(item);
           var divElement = document.createElement('div');
           //add class to div
           divElement.classList.add('item');
@@ -63,21 +65,25 @@ onAuthStateChanged(auth, (user) => {
 
 
 function addPreset(){
-  const presetRef = ref(db, `Users/${uid}/PresetItems`);
-
   const Name = document.getElementById('presetName').value ; 
   const height= document.getElementById('presetHeight').value ; 
   const width= document.getElementById('presetWidth').value ; 
   const length= document.getElementById('presetLength').value ; 
   const type= document.getElementById('presetType').value ;
-  push(presetRef, {
-    "Name": Name,
-    "Height": height,
-    "Width": width,
-    "Length": length,
-    "Type": type,
-  })
-  window.location.reload();
+  if ((Name=='')||(height=='')||(width=='')||(length=='')||(type=='')){
+    alert('make sure all forms are filled before creating a new preset');
+  }
+  else{
+    const presetRef = ref(db, `Users/${uid}/PresetItems`);
+    push(presetRef, {
+      "Name": Name,
+      "Height": height,
+      "Width": width,
+      "Length": length,
+      "Type": type,
+    })
+    window.location.reload();
+  }
 
 }
 document.querySelector(".submitbutton").addEventListener("click", addPreset);
