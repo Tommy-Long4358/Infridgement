@@ -742,7 +742,7 @@ a:visited {
     display: flex;
     align-items: center;
     padding-left: 10px;
-    
+
 }
 .add-preset-item > .add-new-preset >.options{
     width: 50%;
@@ -772,8 +772,6 @@ a:visited {
   width: 90%;
   margin-top: 10px;
 }
-
-
 
 /* === Ratios === */
 .ratio {

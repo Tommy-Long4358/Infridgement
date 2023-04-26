@@ -81,4 +81,3 @@ function addPreset(){
 
 }
 document.querySelector(".submitbutton").addEventListener("click", addPreset);
-

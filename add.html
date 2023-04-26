@@ -58,11 +58,11 @@
 
             <label for="size">Dimensions (inches)</label><br>
             <div class="dimensions">
-                <input id="item-l" type="number" name="size" placeholder="Length">
+                <input id="item-l" type="number" step="0.01" name="size" placeholder="Length">
                 <p>X</p>
-                <input id="item-w" type="number" name="size" placeholder="Width">
+                <input id="item-w" type="number" step="0.01" name="size" placeholder="Width">
                 <p>X</p>
-                <input id="item-h" type="number" name="size" placeholder="Height">
+                <input id="item-h" type="number" step="0.01" name="size" placeholder="Height">
             </div>
 
             <label for="date">Expiration Date</label><br>
@@ -184,11 +184,8 @@
                     <option value="Vegetables">Vegetables</option>
                     <option value="Dairy">Dairy</option>
                     <option value="Protein">Protein</option>
-                    <option value="Snack">Snack</option>
-                    <option value="Other">Other</option>    
-                    <option value="">?</option>
-                    <option value="">?</option>
-                    <option value="">?</option>   
+                    <option value="Snacks">Snacks</option>
+                    <option value="Other">Other</option>     
                 </select>
             </div>
             <input class="submitbutton" type="submit" value="+">
