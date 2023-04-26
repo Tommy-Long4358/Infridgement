@@ -13,6 +13,9 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth();
 
+const fridgeListClass = document.getElementsByClassName("fridge-list")[0];
+const freezerListClass = document.getElementsByClassName("freezer-list")[0];
+var closeLoc = document.getElementsByClassName("close-loc");
 
 
 
@@ -26,6 +29,8 @@ onAuthStateChanged(auth, (user) => {
         // show user capacity for secs
         displayCapacity(user);
         displayAccount(user.uid);
+        displayItems("FridgeStorage", fridgeListClass, user.uid);
+        displayItems("FreezerStorage", freezerListClass, user.uid);
     }
     else {
         // User is signed out
@@ -33,7 +38,77 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
+function displayItems(section, listClass, userID)
+{
+    // Fridge storage reference
+    get(ref(db, `Users/${userID}/${section}`)).then((snapshot) => {
+        const sections = snapshot.val();
 
+        
+        // Get keys from DB which is the section names
+        const sectionNames = Object.keys(sections);
+
+        for(let i = 0; i < sectionNames.length; i++)
+        {
+            // H4 element to display what section it is
+            var h4Element = document.createElement("h4");
+
+            // Set name of h4 element with key name
+            h4Element.innerHTML = sectionNames[i];
+
+            // Append to fridge-list class in HTML
+            listClass.appendChild(h4Element);
+
+            // Create <ul> element
+            var ul = document.createElement("ul");
+
+            // Get names of all items in that section
+            const itemKeys = Object.keys(sections[sectionNames[i]]);
+            //const itemKeys = Object.keys(sections[sectionNames[i].name]);
+
+            for(let i = 0; i < itemKeys.length; i++)
+            {
+                var li = document.createElement("li");
+                
+                /*
+                // Check expiration date and mark item as red
+                
+                // Expiration date of item
+                const date1 = new Date(section[sectionNames[i]].expDate);
+
+                // Current date right now
+                const date2 = new Date();
+                
+                if (date1.getMonth() == date2.getMonth() && date1.getDate() + 1 == date2.getDate() && date1.getFullYear() == date2.getFullYear())
+                {
+                    console.log("true");
+                    li.style.color = '#FF0000';
+                }
+                */
+
+                var but = document.createElement("button");
+                var txt = document.createTextNode("\u00D7");
+                but.className = "close-loc";
+                
+                but.appendChild(txt);
+                li.appendChild(but);
+
+                li.innerHTML = itemKeys[i];
+
+                ul.appendChild(li);
+            }
+            
+            listClass.appendChild(ul);   
+        }
+
+        for(let i = 0; i < closeLoc.length; i++)
+        {
+            closeLoc[i].onclick = function() {
+                console.log("click!");
+              }
+        }
+    })
+}
 
 // === get capcaity === 
 // 1. get dim of fridge/section and calc sec vol 
