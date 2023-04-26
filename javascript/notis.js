@@ -1,8 +1,5 @@
 
-var ul = document.getElementById("notificationList");
-var li = document.createElement("li");
-li.textContent = "Testing!"
-ul.appendChild(li);
+
 
 // Get trash and read button's elements.
 document.getElementById("trash").addEventListener("click", deleteAll);
