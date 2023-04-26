@@ -58,15 +58,15 @@
 
             <label for="size">Dimensions (inches)</label><br>
             <div class="dimensions">
-                <input id="item-l" type="number" step="0.01" name="size" placeholder="Length">
+                <input id="item-l" type="number" step="0.01" name="size" placeholder="Length" required>
                 <p>X</p>
-                <input id="item-w" type="number" step="0.01" name="size" placeholder="Width">
+                <input id="item-w" type="number" step="0.01" name="size" placeholder="Width" required>
                 <p>X</p>
-                <input id="item-h" type="number" step="0.01" name="size" placeholder="Height">
+                <input id="item-h" type="number" step="0.01" name="size" placeholder="Height" required>
             </div>
 
             <label for="date">Expiration Date</label><br>
-            <input id="item-expDate" type="date" name="date"><br>
+            <input id="item-expDate" type="date" name="date" required><br>
 
             <label for="comment">Comments (optional)</label><br>
             <textarea name="comment" id="item-comments" cols="30" rows="5"></textarea><br>
@@ -74,13 +74,13 @@
             <!-- https://www.w3schools.com/howto/howto_js_cascading_dropdown.asp -->
             <label for="location">Location</label><br>
             <!-- select location -->
-            <select name="location" id="FridgeOrFreezer" onchange="loadCompartments()">
+            <select name="location" id="FridgeOrFreezer" onchange="loadCompartments()" required>
                 <option disabled selected value> -- Select Fridge or Freezer -- </option>
                 <option value="Fridge">Fridge</option>
                 <option value="Freezer">Freezer</option>
             </select>
 
-            <select name="location" id="friFree-compartment">
+            <select name="location" id="friFree-compartment" required>
                 <option disabled selected value> -- Select a Compartment -- </option>
                 <option id="shelf1" value="Shelf 1">Shelf 1</option>
                 <option id="shelf2" value="Shelf 2">Shelf 2</option>
