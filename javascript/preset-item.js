@@ -63,21 +63,25 @@ onAuthStateChanged(auth, (user) => {
 
 
 function addPreset(){
-  const presetRef = ref(db, `Users/${uid}/PresetItems`);
-
   const Name = document.getElementById('presetName').value ; 
   const height= document.getElementById('presetHeight').value ; 
   const width= document.getElementById('presetWidth').value ; 
   const length= document.getElementById('presetLength').value ; 
   const type= document.getElementById('presetType').value ;
-  push(presetRef, {
-    "Name": Name,
-    "Height": height,
-    "Width": width,
-    "Length": length,
-    "Type": type,
-  })
-  window.location.reload();
+  if ((Name=='')||(height=='')||(width=='')||(length=='')||(type=='')){
+    alert('make sure all forms are filled before creating a new preset');
+  }
+  else{
+    const presetRef = ref(db, `Users/${uid}/PresetItems`);
+    push(presetRef, {
+      "Name": Name,
+      "Height": height,
+      "Width": width,
+      "Length": length,
+      "Type": type,
+    })
+    window.location.reload();
+  }
 
 }
 document.querySelector(".submitbutton").addEventListener("click", addPreset);
