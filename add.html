@@ -58,15 +58,15 @@
 
             <label for="size">Dimensions (inches)</label><br>
             <div class="dimensions">
-                <input id="item-l" type="number" step="0.01" name="size" placeholder="Length">
+                <input id="item-l" type="number" step="0.01" name="size" placeholder="Length" required>
                 <p>X</p>
-                <input id="item-w" type="number" step="0.01" name="size" placeholder="Width">
+                <input id="item-w" type="number" step="0.01" name="size" placeholder="Width" required>
                 <p>X</p>
-                <input id="item-h" type="number" step="0.01" name="size" placeholder="Height">
+                <input id="item-h" type="number" step="0.01" name="size" placeholder="Height" required>
             </div>
 
             <label for="date">Expiration Date</label><br>
-            <input id="item-expDate" type="date" name="date"><br>
+            <input id="item-expDate" type="date" name="date" required><br>
 
             <label for="comment">Comments (optional)</label><br>
             <textarea name="comment" id="item-comments" cols="30" rows="5"></textarea><br>
@@ -74,13 +74,13 @@
             <!-- https://www.w3schools.com/howto/howto_js_cascading_dropdown.asp -->
             <label for="location">Location</label><br>
             <!-- select location -->
-            <select name="location" id="FridgeOrFreezer" onchange="loadCompartments()">
+            <select name="location" id="FridgeOrFreezer" onchange="loadCompartments()" required>
                 <option disabled selected value> -- Select Fridge or Freezer -- </option>
                 <option value="Fridge">Fridge</option>
                 <option value="Freezer">Freezer</option>
             </select>
 
-            <select name="location" id="friFree-compartment">
+            <select name="location" id="friFree-compartment" required>
                 <option disabled selected value> -- Select a Compartment -- </option>
                 <option id="shelf1" value="Shelf 1">Shelf 1</option>
                 <option id="shelf2" value="Shelf 2">Shelf 2</option>
@@ -165,19 +165,19 @@
             
 
         </div>
-        <div class="add-new-preset">
+        <form class="add-new-preset">
             <div class="options">
 
-                <input type="text" name="name" placeholder="Name of Item" id="presetName">
+                <input type="text" name="name" placeholder="Name of Item" id="presetName" required>
                 <div class="dimensions">
-                    <input type="number" name="size" placeholder="Height (in.)" id ="presetHeight">
+                    <input type="number" name="size" placeholder="Height (in.)" id ="presetHeight" required>
                     <p>X</p>
-                    <input type="number" name="size" placeholder="Width (in.)" id ="presetWidth">
+                    <input type="number" name="size" placeholder="Width (in.)" id ="presetWidth" required>
                     <p>X</p>
-                    <input type="number" name="size" placeholder="Length (in.)" id ="presetLength">
+                    <input type="number" name="size" placeholder="Length (in.)" id ="presetLength" required>
 
                 </div>
-                <select name="type" id="presetType">
+                <select name="type" id="presetType" required>
                     <!-- add more and adjust as needed -->
                     <option disabled selected value> -- Select Food Type -- </option>
                     <option value="Fruits">Fruits</option>
@@ -189,7 +189,7 @@
                 </select>
             </div>
             <input class="submitbutton" type="submit" value="+">
-        </div>
+        </form>
         
 
         <!-- *ADD CODE HERE* -->
