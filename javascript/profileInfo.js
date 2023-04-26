@@ -136,5 +136,5 @@ async function profileUpdate(e)
   });
   document.getElementById("password").value = "";
   document.getElementById("new-password").value = "";
-  alert("Profile Saved!");
+  // alert("Profile Saved!");
 }

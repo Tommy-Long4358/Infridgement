@@ -608,7 +608,7 @@ a:visited {
 .profile-edit-boxes {
     width: 100%;
     height: fit-content;
-    min-width: 200px;
+    min-width: 300px;
     margin:auto;
     margin-top: -50px;
     max-width: inherit;
