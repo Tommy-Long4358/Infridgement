@@ -15,11 +15,6 @@ const auth = getAuth();
 
 const fridgeListClass = document.getElementsByClassName("fridge-list")[0];
 const freezerListClass = document.getElementsByClassName("freezer-list")[0];
-var closeLoc = document.getElementsByClassName("close-loc");
-
-
-
-
 
 // run funcitons if user is logged in 
 onAuthStateChanged(auth, (user) => {
