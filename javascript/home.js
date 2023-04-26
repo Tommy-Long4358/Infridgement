@@ -2,7 +2,7 @@
 import { firebaseConfig } from "./firebaseKey.js";
 // Firebase Functions
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { getDatabase, ref, set, onValue, get, child } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js";
+import { getDatabase, ref, set, onValue, get, child, update, remove } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
 // frdige dims
@@ -13,19 +13,19 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth();
 
-
-
-
-
+const fridgeListClass = document.getElementsByClassName("fridge-list")[0];
+const freezerListClass = document.getElementsByClassName("freezer-list")[0];
 
 // run funcitons if user is logged in 
 onAuthStateChanged(auth, (user) => {
     if (user) {
         // User is signed in
-        displayAccount(user.uid);
+
         // show user capacity for secs
         displayCapacity(user);
-        
+        displayAccount(user.uid);
+        displayItems("FridgeStorage", fridgeListClass, user.uid);
+        displayItems("FreezerStorage", freezerListClass, user.uid);
     }
     else {
         // User is signed out
@@ -33,7 +33,103 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
+function displayItems(section, listClass, userID)
+{
+    // Fridge storage reference
+    get(ref(database, `Users/${userID}/${section}`)).then((snapshot) => {
+        const sections = snapshot.val();
+        
+        // Get keys from DB which is the section names
+        const sectionNames = Object.keys(sections);
+        console.log(sectionNames)
+        for(let i = 0; i < sectionNames.length; i++)
+        {
+            // H4 element to display what section it is
+            var h4Element = document.createElement("h4");
 
+            // Set name of h4 element with key name
+            h4Element.innerHTML = sectionNames[i];
+
+            // Append to fridge-list class in HTML
+            listClass.appendChild(h4Element);
+
+            // Create <ul> element
+            var ul = document.createElement("ul");
+
+            ul.id = `${sectionNames[i]}-item`;
+
+            // Get names of all items in that section
+            const itemKeys = Object.keys(sections[sectionNames[i]]);
+
+            for(let j = 0; j < itemKeys.length; j++)
+            {
+                var li = document.createElement("li");
+
+                li.id = itemKeys[i];
+                                
+                // Expiration date of item
+                const date1 = new Date(sections[sectionNames[i]][itemKeys[j]].expDate);
+
+                // Current date right now
+                const date2 = new Date();
+                
+                if ((date1 < date2) || (date1.getMonth() == date2.getMonth() && date1.getDate() + 1 == date2.getDate() && date1.getFullYear() == date2.getFullYear()))
+                {
+                    li.style.color = '#dc143c';
+                }
+            
+                var but = document.createElement("button");
+                but.className = `close-${section}`;
+                but.innerHTML = "X"
+
+                li.innerHTML = sections[sectionNames[i]][itemKeys[j]].name;
+
+                li.appendChild(but);
+                ul.appendChild(li);
+            }
+            
+            
+            listClass.appendChild(ul);   
+        }
+
+        var closeLoc = document.getElementsByClassName(`close-${section}`);
+        for(let i = 0; i < closeLoc.length; i++)
+        {
+            closeLoc[i].onclick = function() {
+                // Go up the parent element branches to the class and remove its child
+                var li = this.parentElement;
+                var sdiv = li.parentElement;
+
+                const sectionName = sdiv.id.split("-")[0];
+                
+                get(ref(database, `Users/${userID}/${section}/${sectionName}`)).then((snapshot) => {
+                    var items = snapshot.val();
+                    const itemKeys = Object.keys(snapshot.val());
+
+                    if (itemKeys.length == 1)
+                    {
+                        remove(ref(database, `Users/${userID}/${section}/${sectionName}/${li.id}`));
+
+                        delete items[itemKeys[0]];
+
+                        items[sectionName] = "";
+
+                        update(ref(database, `Users/${userID}/${section}`), items);
+                    }
+                    else
+                    {
+                        console.log("hi")
+                        remove(ref(database, `Users/${userID}/${section}/${sectionName}/${li.id}`))
+                    }
+
+                    sdiv.removeChild(li);
+                });
+
+                
+            }
+        }
+    })
+}
 
 // === get capcaity === 
 // 1. get dim of fridge/section and calc sec vol 
@@ -48,9 +144,6 @@ function displayCapacity(user) {
     const userDataPath = ref(database, `Users/${user.uid}`);
     onValue(userDataPath, (snapshot) => {
         const userData = snapshot.val();
-
-        console.log(userData);
-
 
         // User section space = volume of refrigerator section  X   (section ratio / 100)
         // fridge section user volume 
@@ -69,79 +162,151 @@ function displayCapacity(user) {
         const frezD1UserVol = calcVolume(freeD1[0], freeD1[1], freeD1[2]) * (userData["FreezerRatio"]["Door 1"] / 100);
         const frezD2UserVol = calcVolume(freeD2[0], freeD2[1], freeD2[2]) * (userData["FreezerRatio"]["Door 2"] / 100);
 
-        console.log(userData["FridgeStorage"]);
-
         // iterate through fridge section 
         for (var fridgeSections in userData["FridgeStorage"]) {
-            console.log(fridgeSections);
 
             // calculate total volume of items in a section 
             var usedSecVol = 0;
             for (var keys in userData["FridgeStorage"][fridgeSections]) {
                 usedSecVol += Object.values(userData["FridgeStorage"][fridgeSections][keys]["dim"]).reduce((a, b) => a * b);
-
-                console.log(keys);
             }
 
             // calculate used capacity percentage and display capacity to corresponding section 
             if (fridgeSections == "Shelf 1") {
-                document.getElementById("fridge-shelf-1").innerHTML = Math.round(((usedSecVol) / friS1UserVol) * 100) + "%";
+                const capacityPercent = Math.round(((usedSecVol) / friS1UserVol) * 100);
+
+                if (Number.isNaN(capacityPercent)) {
+                    document.getElementById("fridge-shelf-1").innerHTML = "Unassigned Ratio";
+                }
+                else {
+                    document.getElementById("fridge-shelf-1").innerHTML = capacityPercent + "%";
+                }
             }
             else if (fridgeSections == "Shelf 2") {
-                document.getElementById("fridge-shelf-2").innerHTML = Math.round(((usedSecVol) / friS2UserVol) * 100) + "%";
+                const capacityPercent = Math.round(((usedSecVol) / friS2UserVol) * 100);
+
+                if (Number.isNaN(capacityPercent)) {
+                    document.getElementById("fridge-shelf-2").innerHTML = "Unassigned Ratio";
+                }
+                else {
+                    document.getElementById("fridge-shelf-2").innerHTML = capacityPercent + "%";
+                }
             }
             else if (fridgeSections == "Shelf 3") {
-                document.getElementById("fridge-shelf-3").innerHTML = Math.round(((usedSecVol) / friS3UserVol) * 100) + "%";
+                const capacityPercent = Math.round(((usedSecVol) / friS3UserVol) * 100);
+
+                if (Number.isNaN(capacityPercent)) {
+                    document.getElementById("fridge-shelf-3").innerHTML = "Unassigned Ratio";
+                }
+                else {
+                    document.getElementById("fridge-shelf-3").innerHTML = capacityPercent + "%";
+                }
             }
             else if (fridgeSections == "Produce") {
-                document.getElementById("produce").innerHTML = Math.round(((usedSecVol) / produceUserVol) * 100) + "%";
+                const capacityPercent = Math.round(((usedSecVol) / produceUserVol) * 100);
+
+                if (Number.isNaN(capacityPercent)) {
+                    document.getElementById("produce").innerHTML = "Unassigned Ratio";
+                }
+                else {
+                    document.getElementById("produce").innerHTML = capacityPercent + "%";
+                }
             }
             else if (fridgeSections == "Door 1") {
-                document.getElementById("fridge-door-1").innerHTML = Math.round(((usedSecVol) / friD1UserVol) * 100) + "%";
+                const capacityPercent = Math.round(((usedSecVol) / friD1UserVol) * 100);
+
+                if (Number.isNaN(capacityPercent)) {
+                    document.getElementById("fridge-door-1").innerHTML = "Unassigned Ratio";
+                }
+                else {
+                    document.getElementById("fridge-door-1").innerHTML = capacityPercent + "%";
+                }
             }
             else if (fridgeSections == "Door 2") {
-                document.getElementById("fridge-door-2").innerHTML = Math.round(((usedSecVol) / friD2UserVol) * 100) + "%";
+                const capacityPercent = Math.round(((usedSecVol) / friD2UserVol) * 100);
+
+                if (Number.isNaN(capacityPercent)) {
+                    document.getElementById("fridge-door-2").innerHTML = "Unassigned Ratio";
+                }
+                else {
+                    document.getElementById("fridge-door-2").innerHTML = capacityPercent + "%";
+                }
             }
             else if (fridgeSections == "Door 3") {
-                document.getElementById("fridge-door-3").innerHTML = Math.round(((usedSecVol) / friD3UserVol) * 100) + "%";
+                const capacityPercent = Math.round(((usedSecVol) / friD3UserVol) * 100);
+
+                if (Number.isNaN(capacityPercent)) {
+                    document.getElementById("fridge-door-3").innerHTML = "Unassigned Ratio";
+                }
+                else {
+                    document.getElementById("fridge-door-3").innerHTML = capacityPercent + "%";
+                }
             }
         }
 
-        console.log(userData["FreezerStorage"]);
-
         // iterate through fridge section 
         for (var freezerSections in userData["FreezerStorage"]) {
-            console.log(freezerSections);
 
             // calculate total volume of items in a section 
             var usedSecVol = 0;
             for (var keys in userData["FreezerStorage"][freezerSections]) {
                 usedSecVol += Object.values(userData["FreezerStorage"][freezerSections][keys]["dim"]).reduce((a, b) => a * b);
-
-                console.log(keys);
             }
 
             // calculate used capacity percentage and display capacity to corresponding section 
             if (freezerSections == "Shelf 1") {
-                document.getElementById("freezer-shelf-1").innerHTML = Math.round(((usedSecVol) / frezS1UserVol) * 100) + "%";
+                const capacityPercent = Math.round(((usedSecVol) / frezS1UserVol) * 100);
+
+                if (Number.isNaN(capacityPercent)) {
+                    document.getElementById("freezer-shelf-1").innerHTML = "Unassigned Ratio";
+                }
+                else {
+                    document.getElementById("freezer-shelf-1").innerHTML = capacityPercent + "%";
+                }
             }
             else if (freezerSections == "Shelf 2") {
-                document.getElementById("freezer-shelf-2").innerHTML = Math.round(((usedSecVol) / frezS2UserVol) * 100) + "%";
+                const capacityPercent = Math.round(((usedSecVol) / frezS2UserVol) * 100);
+
+                if (Number.isNaN(capacityPercent)) {
+                    document.getElementById("freezer-shelf-2").innerHTML = "Unassigned Ratio";
+                }
+                else {
+                    document.getElementById("freezer-shelf-2").innerHTML = capacityPercent + "%";
+                }
             }
             else if (freezerSections == "Shelf 3") {
-                document.getElementById("freezer-shelf-3").innerHTML = Math.round(((usedSecVol) / frezS3UserVol) * 100) + "%";
+                const capacityPercent = Math.round(((usedSecVol) / frezS3UserVol) * 100);
+
+                if (Number.isNaN(capacityPercent)) {
+                    document.getElementById("freezer-shelf-3").innerHTML = "Unassigned Ratio";
+                }
+                else {
+                    document.getElementById("freezer-shelf-3").innerHTML = capacityPercent + "%";
+                }
             }
             else if (freezerSections == "Door 1") {
-                document.getElementById("freezer-door-1").innerHTML = Math.round(((usedSecVol) / frezD1UserVol) * 100) + "%";
+                const capacityPercent = Math.round(((usedSecVol) / frezD1UserVol) * 100);
+
+                if (Number.isNaN(capacityPercent)) {
+                    document.getElementById("freezer-door-1").innerHTML = "Unassigned Ratio";
+                }
+                else {
+                    document.getElementById("freezer-door-1").innerHTML = capacityPercent + "%";
+                }
             }
             else if (freezerSections == "Door 2") {
-                document.getElementById("freezer-door-2").innerHTML = Math.round(((usedSecVol) / frezD2UserVol) * 100) + "%";
+                const capacityPercent = Math.round(((usedSecVol) / frezD2UserVol) * 100);
+
+                if (Number.isNaN(capacityPercent)) {
+                    document.getElementById("freezer-door-2").innerHTML = "Unassigned Ratio";
+                }
+                else {
+                    document.getElementById("freezer-door-2").innerHTML = capacityPercent + "%";
+                }
             }
         }
     });
 }
-
-
 
 function calcVolume(edge1, edge2, edge3) {
     return edge1 * edge2 * edge3;
