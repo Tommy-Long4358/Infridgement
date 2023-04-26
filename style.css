@@ -346,8 +346,10 @@ a:visited {
 }
 
 .nav-column>a>img {
-    height: 30px;
-    margin-right: 8px;
+    border-radius: 50%;
+    width: 40px;
+    margin-right: 10px;
+  
 }
 
 .nav-column>.logout-button {
@@ -411,8 +413,212 @@ a:visited {
     background-color: #36454F;
     height: 100vh;
     padding: 25px 30px;
+    overflow-y: scroll;
 }
 
+.edit-body{
+    align-items: center;
+    text-align: center;
+}
+
+.profile-pic{
+    border:10px solid white;
+    display: block;
+    margin: auto;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    top: -10px;
+    overflow: hidden;
+    color: transparent;
+    background-color: white;
+    position: relative;
+}
+
+.profile-pic > img{
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    z-index: 0;
+    /* object-fit: cover; */
+}
+
+.profile-pic > input{
+    display: none;
+}
+
+.change-pfp{
+    position: relative;
+    top: -110%;
+    left: -2%;
+    width: 140px;
+    height: 160px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.change-pfp:hover{
+    background-color: #2b2b2b93;
+    color: rgb(255, 247, 232);
+    display: block;
+    text-align: center;
+    font-style: bold;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background-color .2s ease-in-out;
+    z-index: 20000;
+    padding-top: 60px;
+    margin-left: -5px;
+}
+
+.info-form{
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.user-details{
+    padding-top: 10px;
+    padding-bottom: 30px;
+    padding-left: 70px;
+    padding-right: 70px;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    justify-content: space-between;
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+}
+
+.user-details > div {
+    width: 100%;
+    margin: auto;
+ 
+}
+
+.user-details > .form-names{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.user-details > .form-names > div{
+    max-width: 250px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 20px;
+}
+
+.user-details > .form-passes 
+{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user-details > .form-passes > div{
+    max-width: 250px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 20px;
+}
+
+.user-details > .form-email-user{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user-details > .form-email-user > div{
+    max-width: 250px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 20px;
+}
+
+.user-details > .form-names > div,
+.user-details > .form-email-user > div,
+.user-details > .form-passes > div
+{
+    width: 100%;
+}
+
+.user-details > .form-names > div > input , 
+.user-details > .form-email-user > div > input,
+.user-details > .form-passes > div > input
+{
+    height: 30px;
+    border-radius: 10px;
+    width: 100%;
+    min-width: 170px;
+    max-width: 250px;
+    border-style: solid;
+    border-color: #1C7C8A;
+    padding-left: 5px;
+    transition: all 0.3s ease;
+}
+
+.form-email > input {
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #1C7C8A;
+    padding-left: 5px;
+    transition: all 0.3s ease;
+}
+
+.form-email-user > div > input:focus , 
+.form-passes > div > input:focus ,
+.user-details > .form-names > div > input:focus {
+    border-color: #B3CCE6;
+    outline: none;
+} 
+
+.user-details > button{
+    background-color: #58A4B0;
+    color: white;
+    border-radius: 20px;
+    border-style: none;
+    width: 120px;
+    height: 40px;
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.user-details > .form-names > div > h6 ,
+.user-details > .form-email-user > div > h6, 
+.user-details > .form-passes> div > h6{
+    font-size: 15px;
+    text-align: left;
+ 
+}
+
+
+.profile-edit-boxes {
+    width: 100%;
+    height: fit-content;
+    min-width: 300px;
+    margin:auto;
+    margin-top: -50px;
+    max-width: inherit;
+    box-sizing: border-box;
+    display: flex;
+    gap: 3%;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.25);
+}
 
 
 /* === Home === */
@@ -1079,3 +1285,5 @@ input::-webkit-inner-spin-button {
 .about-body>.about-features>div>a>h5 {
     font-size: 18px;
 }
+
+/*=== Profile ===*/

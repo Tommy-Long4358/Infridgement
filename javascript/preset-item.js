@@ -25,11 +25,13 @@ onAuthStateChanged(auth, (user) => {
     // get all presets
     get(presetRef).then((snapshot) => {
       const presets = snapshot.val();
+      console.log(presets);
       for (var preset in presets){
         const itemRef = ref(db, `Users/${userID}/PresetItems/${preset}`);
         //display each preset
         get(itemRef).then((snapshot) => {
           const item = snapshot.val();
+          console.log(item);
           var divElement = document.createElement('div');
           //add class to div
           divElement.classList.add('item');

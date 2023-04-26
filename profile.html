@@ -10,8 +10,9 @@
 </head>
 <body class="flex-container">
     <!-- navigation column -->
+    <script type="module" src="javascript/profileInfo.js"></script>
     <div class="nav-column">
-        <a href="profile.html" class="active"><img src="images/nav/user.png" alt="">John Doe</a>
+        <a href="profile.html" id="profile-button" class="active"><img id="profile-info-picture" src="images/nav/user.png" alt=""><span id="full-name"></span></a>
         <a href="home.html"><img src="images/nav/home-icon.png" alt="">Home</a>
         <a href="add.html"><img src="images/nav/add-icon.png" alt="">Add Item</a>
         <a href="ratios.html"><img src="images/nav/ratio-icon.png" alt="">Ratios</a>
@@ -35,8 +36,54 @@
         <div class="page-title">
             <h2>Personal Info</h2>
         </div>
-
-        <!-- *ADD CODE HERE* -->
+        <div class="edit-body">
+            <div class="profile-pic">
+                <img src="" id="pfp" />
+                <input id="file" type="file" />
+                <label class="change-pfp" for="file">
+                    Change Photo
+                </label>
+            </div>
+            <div class="profile-edit-boxes">
+                <!--This is the form to update user information-->
+                <div class="info-form">
+                    <form class="user-details" id="userProfileDetails" action="">
+                        <div class="form-names">
+                            <div class="form-first-name">
+                                <h6>First Name</h6>
+                                <input type="text" id="firstName" >
+                            </div>
+                            <div class="form-last-name">
+                                <h6>Last Name</h6>
+                                <input type="text" id="lastName" >
+                            </div>
+                        </div>
+                        <div class="form-email-user">
+                            <div class="form-email">
+                                <h6>Email</h6>
+                                <input type="email" id="email">
+                            </div>
+                            <div class="form-username">
+                                <h6>Username</h6>
+                                <input type="text" id="username">
+                            </div>
+                        </div>   
+                        <div class="form-passes">
+                            <div class="form-password">
+                                <h6>Current Password</h6>
+                                <input type="password" id="password">
+                            </div>
+                            <div class="form-password">
+                                <h6>New Password</h6>
+                                <input type="password" id="new-password">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" id="edit-save">Save</button>
+                    </form>
+                </div>
+        </div>
+        
     </div>
 </body>
 </html>
