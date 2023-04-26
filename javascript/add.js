@@ -199,5 +199,5 @@ function addItem(e)
     const friFree = document.getElementById("FridgeOrFreezer").value;
     const compartment =  document.getElementById("friFree-compartment").value;
 
-    const doesFit = checkAdd(length, width, height, friFree, compartment);
+    checkAdd(length, width, height, friFree, compartment);
 }
