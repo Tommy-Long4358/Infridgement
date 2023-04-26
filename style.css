@@ -346,8 +346,10 @@ a:visited {
 }
 
 .nav-column>a>img {
-    height: 30px;
-    margin-right: 8px;
+    border-radius: 50%;
+    width: 40px;
+    margin-right: 10px;
+  
 }
 
 .nav-column>.logout-button {

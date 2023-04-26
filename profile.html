@@ -10,13 +10,14 @@
 </head>
 <body class="flex-container">
     <!-- navigation column -->
+    <script type="module" src="javascript/profileInfo.js"></script>
     <div class="nav-column">
-        <a href="profile.html" class="active"><img src="images/nav/user.png" alt="">John Doe</a>
+        <a href="profile.html" id="profile-button" class="active"><img id="profile-info-picture" src="images/nav/user.png" alt=""><span id="full-name"></span></a>
         <a href="home.html"><img src="images/nav/home-icon.png" alt="">Home</a>
         <a href="add.html"><img src="images/nav/add-icon.png" alt="">Add Item</a>
         <a href="ratios.html"><img src="images/nav/ratio-icon.png" alt="">Ratios</a>
         <a href="about.html"><img src="images/nav/about-icon.png" alt="">About</a>
-        <a href="login.html" class="logout-button"><img src="images/nav/log-out-icon.png" alt="">Log Out</a>
+        <a href="index.html" class="logout-button"><img src="images/nav/log-out-icon.png" alt="">Log Out</a>
     </div>
 
     <!-- notifications column -->
@@ -37,7 +38,7 @@
         </div>
         <div class="edit-body">
             <div class="profile-pic">
-                <img src="images/ducky.png" id="pfp" />
+                <img src="" id="pfp" />
                 <input id="file" type="file" />
                 <label class="change-pfp" for="file">
                     Change Photo
