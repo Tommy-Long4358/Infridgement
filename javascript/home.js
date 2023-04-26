@@ -36,13 +36,12 @@ onAuthStateChanged(auth, (user) => {
 function displayItems(section, listClass, userID)
 {
     // Fridge storage reference
-    get(ref(db, `Users/${userID}/${section}`)).then((snapshot) => {
+    get(ref(database, `Users/${userID}/${section}`)).then((snapshot) => {
         const sections = snapshot.val();
-
         
         // Get keys from DB which is the section names
         const sectionNames = Object.keys(sections);
-
+        console.log(sectionNames)
         for(let i = 0; i < sectionNames.length; i++)
         {
             // H4 element to display what section it is
@@ -57,50 +56,77 @@ function displayItems(section, listClass, userID)
             // Create <ul> element
             var ul = document.createElement("ul");
 
+            ul.id = `${sectionNames[i]}-item`;
+
             // Get names of all items in that section
             const itemKeys = Object.keys(sections[sectionNames[i]]);
-            //const itemKeys = Object.keys(sections[sectionNames[i].name]);
 
-            for(let i = 0; i < itemKeys.length; i++)
+            for(let j = 0; j < itemKeys.length; j++)
             {
                 var li = document.createElement("li");
-                
-                /*
-                // Check expiration date and mark item as red
-                
+
+                li.id = itemKeys[i];
+                                
                 // Expiration date of item
-                const date1 = new Date(section[sectionNames[i]].expDate);
+                const date1 = new Date(sections[sectionNames[i]][itemKeys[j]].expDate);
 
                 // Current date right now
                 const date2 = new Date();
                 
-                if (date1.getMonth() == date2.getMonth() && date1.getDate() + 1 == date2.getDate() && date1.getFullYear() == date2.getFullYear())
+                if ((date1 < date2) || (date1.getMonth() == date2.getMonth() && date1.getDate() + 1 == date2.getDate() && date1.getFullYear() == date2.getFullYear()))
                 {
-                    console.log("true");
-                    li.style.color = '#FF0000';
+                    li.style.color = '#dc143c';
                 }
-                */
-
+            
                 var but = document.createElement("button");
-                var txt = document.createTextNode("\u00D7");
-                but.className = "close-loc";
-                
-                but.appendChild(txt);
+                but.className = `close-${section}`;
+                but.innerHTML = "X"
+
+                li.innerHTML = sections[sectionNames[i]][itemKeys[j]].name;
+
                 li.appendChild(but);
-
-                li.innerHTML = itemKeys[i];
-
                 ul.appendChild(li);
             }
+            
             
             listClass.appendChild(ul);   
         }
 
+        var closeLoc = document.getElementsByClassName(`close-${section}`);
         for(let i = 0; i < closeLoc.length; i++)
         {
             closeLoc[i].onclick = function() {
-                console.log("click!");
-              }
+                // Go up the parent element branches to the class and remove its child
+                var li = this.parentElement;
+                var sdiv = li.parentElement;
+
+                const sectionName = sdiv.id.split("-")[0];
+                
+                get(ref(database, `Users/${userID}/${section}/${sectionName}`)).then((snapshot) => {
+                    var items = snapshot.val();
+                    const itemKeys = Object.keys(snapshot.val());
+
+                    if (itemKeys.length == 1)
+                    {
+                        remove(ref(database, `Users/${userID}/${section}/${sectionName}/${li.id}`));
+
+                        delete items[itemKeys[0]];
+
+                        items[sectionName] = "";
+
+                        update(ref(database, `Users/${userID}/${section}`), items);
+                    }
+                    else
+                    {
+                        console.log("hi")
+                        remove(ref(database, `Users/${userID}/${section}/${sectionName}/${li.id}`))
+                    }
+
+                    sdiv.removeChild(li);
+                });
+
+                
+            }
         }
     })
 }
