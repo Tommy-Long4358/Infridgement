@@ -28,7 +28,7 @@ onAuthStateChanged(auth, (user) => {
       // ...
     } else {
       // User is signed out
-      // ...
+      window.location.href = 'index.html';
     }
   });
 
@@ -136,8 +136,8 @@ function checkAdd(l, w, h, friFree, compartment)
         const temp = dimItem.sort(function(a, b){return b - a}); // order from greatest to least
         const tempd = dims.sort(function(a, b){return b - a}); // temp for compartment dimensions
 
-        console.log(temp);
-        console.log(tempd);
+        // console.log(temp);
+        // console.log(tempd);
 
         // if item fits into the compartment
         if ((temp[0] <= tempd[0]) && (temp[1] <= tempd[1]) && (temp[2] <= tempd[2])) { // check edges
@@ -156,7 +156,8 @@ function checkAdd(l, w, h, friFree, compartment)
             // if the item fits along with the user's current items, add the item
             if (tempvol <= compartVol) {
                 // localStorage.setItem('doesFit', true);
-                console.log('item added successfully');
+                // console.log('item added successfully');
+                alert('Item added successfully.');
                 const name = document.getElementById("item-name").value;
                 const type = document.getElementById("item-type").value;
                 const expDate = document.getElementById("item-expDate").value;
@@ -174,15 +175,20 @@ function checkAdd(l, w, h, friFree, compartment)
                     "dim": { "length": l, "width": w, "height": h},
                     "comments": comments
                 })
+                window.location.reload();
             }
             else{ // item fits in compartment but does not fit within user's ratio
-                console.log('item will not fit with this compartment. please choose a new section or remove item from home');
+                // console.log('item will not fit with this compartment. please choose a new section or remove item from home');
+                alert('This item will not fit in compartment. please choose a new section or remove item(s) from home.');
                 // localStorage.setItem('doesFit', false);
+                window.location.reload();
             }
         }
         else { // if the edges are too big
             // localStorage.setItem('doesFit', false);
-            console.log('edges too big');
+            // console.log('edges too big');
+            alert('Item will not fit into the compartment. Check the size of the item again.');
+            window.location.reload();
         }
     })
 
