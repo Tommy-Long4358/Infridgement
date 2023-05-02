@@ -6,8 +6,6 @@ GitHub URL: [https://github.com/Tommy-Long4358/Infridgement](https://github.com/
 
 
 ## Use Locally (Zip)
-The system can also be used locally, but you will need to configure you're own Firebase Realtime Database.
-
 1. Download and extract the zip file from the [GitHub](https://github.com/Tommy-Long4358/Infridgement) or the zip attached to this submission 
 2. Open the folder in Visual Studio Code and install the "Live Server" extension
 3. Create and replace the [Firease API Key](https://firebase.google.com/) with your own (or skip this step to use our API Key)
